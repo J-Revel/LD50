@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public delegate IEnumerator CoroutineDelegate();
 public class SceneTransition : MonoBehaviour
 {
-    public CoroutineDelegate launchDelegate;
+    RoutineSequence routineHandler;
+    public int priority = 1000;
+    public string sceneName;
+    
     void Start()
+    {
+        routineHandler = GetComponent<RoutineSequence>();
+        routineHandler.RegisterRoutine(SceneTransitionCoroutine(), priority);
+    }
+
+    void Update()
     {
         
     }
 
-    public void LaunchTransition()
+    private IEnumerator SceneTransitionCoroutine()
     {
-        List<IEnumerator> invocationList = new List<IEnumerator>();
-        foreach(IEnumerator routine in launchDelegate.GetInvocationList())
-            StartCoroutine(routine);
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
 
-    private IEnumerator SceneTransitionCoroutine(System.Delegate[] invocationList)
-    {
-        for(int i=0; i<invocationList.Length; i++)
-        {
-            yield return ((CoroutineDelegate)invocationList[i])?.Invoke();
-        }
-    }
 }
