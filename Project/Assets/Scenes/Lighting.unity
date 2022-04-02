@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28334972, g: 0.36482644, b: 0.463896, a: 1}
+  m_IndirectSpecularColor: {r: 0.28406206, g: 0.37067324, b: 0.5004445, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2826,30 +2826,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf43bcf901f51047b6a9fda4eec679c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles:
-  - id: Goomba 1
-    position: 0.5
-    crossProbability: 0.3
-    killable: 0
-    crossProbabilityIncrease: 0
-    icon: {fileID: 21300000, guid: e08a6bc9a6bdccf48a655e3f039d08cc, type: 3}
-  - id: Goomba 2
-    position: 0.8
-    crossProbability: 0.3
-    killable: 0
-    crossProbabilityIncrease: 0
-    icon: {fileID: 21300000, guid: e08a6bc9a6bdccf48a655e3f039d08cc, type: 3}
-  - id: Goomba 3
-    position: 0.9
-    crossProbability: 0.3
-    killable: 0
-    crossProbabilityIncrease: 0
-    icon: {fileID: 21300000, guid: e08a6bc9a6bdccf48a655e3f039d08cc, type: 3}
-  timelineLength: 10
   resolveDuration: 1
   resolveShakeIntensity: 0.1
   playerMovementSpeed: 0.2
-  timelineObstaclePrefab: {fileID: 8566166821316881954, guid: c288ce3161c00894881d07a87ec92dc3, type: 3}
   playerBubblePrefab: {fileID: 8566166821316881954, guid: de37f4dd1556a474b932153415c64d71, type: 3}
   timelineObstacleContainer: {fileID: 686051612}
   timelineStartPoint: {fileID: 101860011}
@@ -6795,7 +6774,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3e-45, y: 0, z: 0, w: -2.0000002}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -6807,14 +6786,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138677391}
-  m_LocalRotation: {x: 0.06876606, y: 0.32066876, z: -0.4851318, w: 0.81061083}
-  m_LocalPosition: {x: 0.24, y: 3, z: 4.18}
+  m_LocalRotation: {x: 0.5627386, y: 0.11394938, z: -0.5334167, w: 0.6211341}
+  m_LocalPosition: {x: -2.96, y: 3, z: -4.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 25, y: 30, z: -55}
+  m_LocalEulerAnglesHint: {x: 55.149, y: -53.404, z: -110.745}
 --- !u!114 &2138677394
 MonoBehaviour:
   m_ObjectHideFlags: 0
