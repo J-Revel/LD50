@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13426e9ead40efb40b3fde96cfad97aa, type: 3}
+  m_Name: FX_destruction
+  m_EditorClassIdentifier: 
+  spriteAnims:
+  - name: Fx_Destruction
+    spriteAnim:
+      sprites:
+      - {fileID: 21300000, guid: 7c4d6a2abdb1ccf47ad3320926bf4485, type: 3}
+      - {fileID: 21300000, guid: 2d480d3c46614d041af51f69b6bbbee8, type: 3}
+      - {fileID: 21300000, guid: b9f76b71bb5fc5e46a2ceddedcc95311, type: 3}
+      - {fileID: 21300000, guid: 09b982308a652804da47326c810f21ad, type: 3}
+      - {fileID: 21300000, guid: 7e7c4b6d44bce5d4c8361ed5716b99bf, type: 3}
+      - {fileID: 21300000, guid: ed265accac6d68c4096d43e36557287a, type: 3}
+      - {fileID: 21300000, guid: 53a20218ed346a44baa59e7c136ecaa9, type: 3}
+      - {fileID: 21300000, guid: 83a8a1ec7f17dba43af380284c10e2c9, type: 3}
+      - {fileID: 21300000, guid: 2064b03664d8ce24a9596c2e880a548f, type: 3}
+      - {fileID: 21300000, guid: 5c7476c8e75f1784eacc8897b9b4616f, type: 3}
+      - {fileID: 21300000, guid: 0a93a0e4b5596fb419e6c33adddf9ac6, type: 3}
+      - {fileID: 21300000, guid: 0717a925377528f4da8eb6cc4a996fe1, type: 3}
+      - {fileID: 21300000, guid: dfd636453a96bd944a35c589769509e3, type: 3}
+      - {fileID: 21300000, guid: 8091006ec6be4b54094510e45431c7dc, type: 3}
+      - {fileID: 21300000, guid: 1cae6c7bf8635a543998c2e7996428f3, type: 3}
+      - {fileID: 21300000, guid: 298b8234e02f77e45a87e576a5c8fa57, type: 3}
+      - {fileID: 21300000, guid: 73b709f56886c354baa724f82ab4a460, type: 3}
+      - {fileID: 21300000, guid: f64471504909fa142ada22a5e7203a48, type: 3}
+      - {fileID: 21300000, guid: 63e9018b913b30e488a804160635411b, type: 3}
+      - {fileID: 21300000, guid: 88c8c6605fbb57048b83e7a175a0842a, type: 3}
+      - {fileID: 21300000, guid: 30041713ac9b2f24ebebb656befe4fdd, type: 3}
+      actionPoints: []
+      framePerSecond: 1
+      loop: 1
+  actionPointNames: []
