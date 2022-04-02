@@ -38,7 +38,7 @@ public class RoutineSequence : MonoBehaviour
         }
     }
 
-    private IEnumerator MainCoroutine()
+    public IEnumerator MainCoroutine()
     {
         for(int i=0; i<registeredRoutines.Count; i++)
         {
