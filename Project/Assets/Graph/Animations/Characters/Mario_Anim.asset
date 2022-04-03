@@ -10,14 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13426e9ead40efb40b3fde96cfad97aa, type: 3}
-  m_Name: Mario_Anim_Idle
+  m_Name: Mario_Anim
   m_EditorClassIdentifier: 
   spriteAnims:
-  - name: Mario_Anim_Course
+  - name: Idle
     spriteAnim:
       sprites:
       - {fileID: 21300000, guid: 84872c31fa72d684f8b234cdf9100cbc, type: 3}
       - {fileID: 21300000, guid: 64c08350522018143874f169d0da3cc4, type: 3}
+      actionPoints: []
+      framePerSecond: 8
+      loop: 1
+  - name: Walk
+    spriteAnim:
+      sprites:
+      - {fileID: 21300000, guid: 40ed58b4902d9964890906f9d95f813a, type: 3}
+      - {fileID: 21300000, guid: f0a55782c189fce42b95dd437953c2a4, type: 3}
       actionPoints: []
       framePerSecond: 8
       loop: 1

@@ -92,6 +92,10 @@ public class UpgradeSubMenu : MonoBehaviour
     }
     public IEnumerator HideSlotsAnimation()
     {
+        for(int i=0; i<dragTargets.Length; i++)
+        {
+            dragTargets[i].DropContent();
+        }
         for(float animTime=0; animTime<animDuration; animTime+=Time.deltaTime)
         {
             float animRatio = 1 - (1 - animTime / animDuration) * (1 -  animTime / animDuration);

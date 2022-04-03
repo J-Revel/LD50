@@ -34,9 +34,11 @@ public class ImprovementUI : MonoBehaviour
             activeSprite.sprite = currentConfig.sprite;
         else
             activeSprite.enabled = false;
+            
         buildingFX.SetActive(false);
         startActiveSpritePos = activeSprite.transform.position;
         startImprovementSpritePos = improvementSprite.transform.position;
+        improvementSprite.transform.position = startImprovementSpritePos + undergroundOffset * -improvementSprite.transform.up;
         for(int i=0; i<upgradeSubMenus.Length; i++)
         {
             int index = i;

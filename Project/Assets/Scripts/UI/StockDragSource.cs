@@ -39,6 +39,12 @@ public class StockDragSource : MonoBehaviour
 
     }
 
+    public void OnStockReceived(int count)
+    {
+        stock += count;
+        text.text = "x" + stock;
+    }
+
     public void OnDragConfirmed()
     {
 
