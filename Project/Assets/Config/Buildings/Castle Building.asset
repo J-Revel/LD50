@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f051f791399546345ac238ea9c5b7520, type: 3}
+  m_Name: Castle Building
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: bc3fd18ca9012f34e8a9837e34cb4173, type: 3}
+  upgrades: []
+  unitProductionDelay: 0
+  unitProduced: {fileID: 0}
+  timelineLength: 0

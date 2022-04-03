@@ -28,6 +28,11 @@ public class DragSlot : MonoBehaviour
                 return dragTarget.containedUnit.source.draggedElementPrefabDelegate();
             return dragSource.nextDragSource != dragSource ? dragSource.nextDragSource.draggedElementPrefabDelegate() : null;
         };
+        dragSource.droppedElementPrefabDelegate += () => {
+            if(dragTarget.containedUnit != null)
+                return dragTarget.containedUnit.source.droppedElementPrefabDelegate();
+            return dragSource.nextDragSource != dragSource ? dragSource.nextDragSource.droppedElementPrefabDelegate() : null;
+        };
     }
     
     public void OnDragStarted()

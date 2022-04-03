@@ -9,6 +9,7 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
     public DragSource nextDragSource;
     public DraggedElementDelegate draggedElementPrefabDelegate;
     public DraggedElementDelegate inSlotElementPrefabDelegate;
+    public DraggedElementDelegate droppedElementPrefabDelegate;
     public System.Action dragStartedDelegate;
     public System.Action dragCanceledDelegate;
     public System.Action dragConfirmedDelegate;
@@ -16,6 +17,7 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
     public LayerMask raycastMask;
     public float offsetFromGround = 3;
     public bool assignSource = true;
+    public bool canTakeElement = true;
 
     void Awake()
     {
@@ -24,7 +26,6 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
 
     void Update()
     {
-        Debug.Log(draggedElement);
     }
 
     public void OnBeginDrag(PointerEventData data)
@@ -33,6 +34,8 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
     }
     public void OnDrag(PointerEventData data)
     {
+        if(draggedElement == null)
+            return;
         Debug.Log("OnDrag called.");
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -65,11 +68,12 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
             draggedElement.lastHolder = this;
             dragStartedDelegate?.Invoke();
         }
+        else draggedElement = null;
     }
 
     public void OnDropInTarget(DragTarget target)
     {
-        if(inSlotElementPrefabDelegate != null)
+        if(draggedElement != null && inSlotElementPrefabDelegate != null)
         {
             dragConfirmedDelegate?.Invoke();
             target.OnContentReceived(inSlotElementPrefabDelegate(), nextDragSource, this);
