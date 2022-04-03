@@ -5,14 +5,14 @@ using UnityEngine;
 public class CheckpointMovement : MonoBehaviour
 {
     public Transform checkpointContainer;
+    private AnimatedSprite animatedSprite;
     public int currentCheckpoint;
     public float movementSpeed = 1;
     void Start()
     {
+        animatedSprite = GetComponent<AnimatedSprite>();
         StartCoroutine(MovementCoroutine());
     }
-
-
 
     private IEnumerator MovementCoroutine()
     {
@@ -25,6 +25,7 @@ public class CheckpointMovement : MonoBehaviour
             RoutineSequence checkpointSequence = nextCheckpoint.GetComponent<RoutineSequence>();
             if(checkpointSequence != null)
             {
+                animatedSprite.SelectAnim("Idle", true);
                 yield return checkpointSequence.MainCoroutine();
             }
             previousPosition = nextPosition;
@@ -34,8 +35,11 @@ public class CheckpointMovement : MonoBehaviour
     private IEnumerator StepMovementCoroutine(Vector3 currentCheckpointPosition, Vector3 targetCheckpointPosition)
     {
         float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / movementSpeed;
+        SpriteRenderer spriteRenderer = animatedSprite.spriteRenderer;
         for(float time = 0; time < duration; time += Time.deltaTime)
         {
+            animatedSprite.SelectAnim("Walk", true);
+            spriteRenderer.flipX = (Vector3.Dot(Vector3.right, targetCheckpointPosition - currentCheckpointPosition) < 0);
             transform.position = Vector3.Lerp(currentCheckpointPosition, targetCheckpointPosition, time / duration);
             yield return null;
         }
