@@ -51,6 +51,8 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
         Debug.Log("OnEndDrag called.");
         if(draggedElement != null)
         {
+            DraggableUnit prefab = draggedElement.source.droppedElementPrefabDelegate();
+            Instantiate(prefab, draggedElement.transform.position, prefab.transform.rotation).source = draggedElement.source;
             dragCanceledDelegate?.Invoke();
             Destroy(draggedElement.gameObject);
 

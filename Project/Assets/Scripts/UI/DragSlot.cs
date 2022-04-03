@@ -44,7 +44,7 @@ public class DragSlot : MonoBehaviour
 
     public void OnDragCanceled()
     {
-        dragTarget.OnContentReceived(dragSource.draggedElement.lastHolder.inSlotElementPrefabDelegate(), dragSource.nextDragSource, dragSource);
+        // dragTarget.OnContentReceived(dragSource.draggedElement.lastHolder.inSlotElementPrefabDelegate(), dragSource.nextDragSource, dragSource);
     }
 
     public void OnDragConfirmed()

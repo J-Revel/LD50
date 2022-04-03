@@ -29,4 +29,15 @@ public class DragTarget : MonoBehaviour, IDropHandler
         Destroy(containedUnit.gameObject);
         containedUnit = null;
     }
+
+    public void DropContent()
+    {
+        if(containedUnit == null)
+            return;
+        DraggableUnit prefab = containedUnit.source.droppedElementPrefabDelegate();
+        Instantiate(prefab, transform.position, prefab.transform.rotation).source = containedUnit.source;
+        Destroy(containedUnit.gameObject);
+        containedUnit = null;
+        enabled = true;
+    }
 }
