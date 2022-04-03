@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f051f791399546345ac238ea9c5b7520, type: 3}
+  m_Name: Farm 1 Building
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: cf54458982d57544fb7da2f91ecb407d, type: 3}
+  upgrades:
+  - result: {fileID: 11400000, guid: 6d6a91e599b295c4397709ddb5fcb25f, type: 2}
+    buildingTime: 2
+  - result: {fileID: 11400000, guid: 94b978a38c3f48440a0eb325c84ea7cf, type: 2}
+    buildingTime: 2
+  unitProductionDelay: 0
+  unitProduced: {fileID: 0}
+  timelineLength: 1
