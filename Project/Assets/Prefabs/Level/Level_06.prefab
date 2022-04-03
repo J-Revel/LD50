@@ -2365,7 +2365,7 @@ LineRenderer:
   - {x: 3, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2410,10 +2410,10 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
+    numCornerVertices: 8
     numCapVertices: 0
     alignment: 1
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 1
   m_UseWorldSpace: 1
@@ -8305,6 +8305,7 @@ MonoBehaviour:
     m_Bits: 1
   offsetFromGround: 3
   assignSource: 1
+  canTakeElement: 1
 --- !u!114 &2199623225849123357
 MonoBehaviour:
   m_ObjectHideFlags: 0
