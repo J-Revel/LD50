@@ -14,6 +14,8 @@ public class TimelinePlayerRoutine : MonoBehaviour
     {
         GenerateRandomTimeline();
         GetComponentInParent<RoutineSequence>().RegisterRoutine(TimelinePlayerCoroutine(), 0);
+        TimelineDataHolder dataHolder = gameObject.AddComponent<TimelineDataHolder>();
+        dataHolder.timelineData = config;
     }
 
     public void GenerateRandomTimeline()

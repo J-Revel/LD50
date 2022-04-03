@@ -31,7 +31,7 @@ public class TimelineDisplay : MonoBehaviour
 
     private void Start()
     {
-        dataHolder = GetComponent<TimelineDataHolder>();
+        dataHolder = GetComponentInParent<TimelineDataHolder>();
         for(int i=0; i<config.obstacles.Count; i++)
         {
             Vector3 characterPosition = Vector3.Lerp(timelineStartPoint.position, timelineEndPoint.position, config.obstacles[i].position / config.timelineLength);
