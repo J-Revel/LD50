@@ -16,13 +16,9 @@ MonoBehaviour:
   - name: Mer
     spriteAnim:
       sprites:
-      - {fileID: 21300000, guid: a0d22b060c16fbc4e995f7f608277fa0, type: 3}
-      - {fileID: 21300000, guid: b1f614402f210554caf38eda4e6b8e13, type: 3}
-      - {fileID: 21300000, guid: db90ff1bc6b736044abe8483776213ab, type: 3}
-      - {fileID: 21300000, guid: 3fd08fab66cefc14698f2ff08414aa7f, type: 3}
-      - {fileID: 21300000, guid: 748601b318108294c94b36d49e2824bc, type: 3}
-      - {fileID: 21300000, guid: 52598b50c88c0b2468f4531c9336cc0e, type: 3}
+      - {fileID: 21300000, guid: 14c537425b9b75247883b6d57015b443, type: 3}
+      - {fileID: 21300000, guid: 4e729d25cbeeb5d40b2242a8efa51f0a, type: 3}
       actionPoints: []
-      framePerSecond: 8
+      framePerSecond: 1
       loop: 1
   actionPointNames: []
