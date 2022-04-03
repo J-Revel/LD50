@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class ImprovementUI : MonoBehaviour
 {
-    public GameObject[] improvementPanels;
-    public Button[] panelButtons;
+    public BuildingConfig currentConfig;
+    public BuildingConfig pendingBuildingConfig;
+    // public Button[] panelButtons;
     public SpriteRenderer activeSprite;
     private Vector3 startActiveSpritePos;
     public SpriteRenderer improvementSprite;
@@ -15,7 +16,6 @@ public class ImprovementUI : MonoBehaviour
 
     public float buildingTime = 0;
     public float buildingDifficulty = 1;
-    public float buildingForce = 0;
     public float buildingRatio { get { return buildingTime / buildingDifficulty; }}
     public GameObject buildingFX;
 
@@ -23,23 +23,39 @@ public class ImprovementUI : MonoBehaviour
     public float focusZoom = 2;
     public float shakeOffset = 0.05f;
     public UpgradeSubMenu[] upgradeSubMenus;
+    private int currentUpgradeIndex;
+    
     public System.Action buildingFinishedDelegate;
+    private bool hasFocus = false;
     
     void Start()
     {
+        if(currentConfig.sprite != null)
+            activeSprite.sprite = currentConfig.sprite;
+        else
+            activeSprite.enabled = false;
         buildingFX.SetActive(false);
         startActiveSpritePos = activeSprite.transform.position;
         startImprovementSpritePos = improvementSprite.transform.position;
-        for(int i=0; i<improvementPanels.Length; i++)
+        for(int i=0; i<upgradeSubMenus.Length; i++)
         {
             int index = i;
-            panelButtons[index].onClick.AddListener(() => {
-                for(int j=0; j<improvementPanels.Length; j++)
+            upgradeSubMenus[i].buildingStartDelegate += (UpgradeConfig config) => {
+                pendingBuildingConfig = config.result;
+                buildingDifficulty = config.buildingTime;
+                buildingTime = 0;
+                buildingFX.SetActive(true);
+                improvementSprite.sprite = config.result.sprite;
+                if(currentUpgradeIndex != index && currentUpgradeIndex >= 0)
                 {
-                    improvementPanels[j].SetActive(j == index);
+                    upgradeSubMenus[currentUpgradeIndex].ClosePanel();
                 }
-            });
+                currentUpgradeIndex = index;
+                UpdateDisplay();
+            };
         }
+        
+        UpdateDisplay();
     }
 
     public void OpenUI()
@@ -47,6 +63,7 @@ public class ImprovementUI : MonoBehaviour
         CameraFocusManager.instance.TakeFocus(focusPositionTransform.position, focusZoom, true);
         CameraFocusManager.instance.focusLostDelegate += OnFocusLost;
         CameraFocusManager.instance.focusStolenDelegate += OnFocusLost;
+        hasFocus = true;
         for(int i=0; i<upgradeSubMenus.Length; i++)
         {
             upgradeSubMenus[i].visible = true;
@@ -55,6 +72,7 @@ public class ImprovementUI : MonoBehaviour
 
     private void OnFocusLost()
     {
+        hasFocus = false;
         CameraFocusManager.instance.focusLostDelegate -= OnFocusLost;
         CameraFocusManager.instance.focusStolenDelegate -= OnFocusLost;
         for(int i=0; i<upgradeSubMenus.Length; i++)
@@ -63,34 +81,54 @@ public class ImprovementUI : MonoBehaviour
         }
     }
 
-    public void StartBuilding(float difficulty)
-    {
-        buildingDifficulty = difficulty;
-        buildingTime = 0;
-        buildingFX.SetActive(true);
-    }
-
     void Update()
     {
         
-        buildingTime += Time.deltaTime * buildingForce;
-        if(buildingTime >= buildingDifficulty)
+        if(currentUpgradeIndex >= 0 && pendingBuildingConfig != null)
         {
-            buildingTime = 0;
-            buildingFinishedDelegate?.Invoke();
+            float buildingForce = upgradeSubMenus[currentUpgradeIndex].buildingForce;
+            buildingTime += Time.deltaTime * buildingForce;
+            upgradeSubMenus[currentUpgradeIndex].buildingRatio = buildingTime / buildingDifficulty;
+            if(buildingTime >= buildingDifficulty)
+            {
+                buildingTime = 0;
+                buildingFinishedDelegate?.Invoke();
+                currentConfig = pendingBuildingConfig;
+                pendingBuildingConfig = null;
+                buildingFX.SetActive(false);
+                upgradeSubMenus[currentUpgradeIndex].ClosePanel();
+                if(hasFocus)
+                {
+                    CameraFocusManager.instance.LoseFocus();
+                }
+                UpdateDisplay();
+            }
+            Vector3 offset = Vector3.zero;
+            if(buildingForce > 0)
+            {
+                offset = shakeOffset * (Random.Range(-1, 1) * transform.right + Random.Range(-1, 1) * transform.up);
+            }
+            improvementSprite.transform.position = startImprovementSpritePos + undergroundOffset * (1 - buildingRatio) * -improvementSprite.transform.up + offset;
+            offset = Vector3.zero;
+            if(buildingForce > 0)
+            {
+                offset = shakeOffset * (Random.Range(-1, 1) * transform.right + Random.Range(-1, 1) * transform.up);
+                buildingForce = 0;
+            }
+            activeSprite.transform.position = startActiveSpritePos + undergroundOffset * buildingRatio * -improvementSprite.transform.up + offset;
         }
-        Vector3 offset = Vector3.zero;
-        if(buildingForce > 0)
+        
+    }
+
+    void UpdateDisplay()
+    {
+        for(int i=0; i<upgradeSubMenus.Length; i++)
         {
-            offset = shakeOffset * (Random.Range(-1, 1) * transform.right + Random.Range(-1, 1) * transform.up);
+            if(i<currentConfig.upgrades.Length)
+                upgradeSubMenus[i].SetUgradeConfig(currentConfig.upgrades[i]);
+            upgradeSubMenus[i].gameObject.SetActive(i<currentConfig.upgrades.Length);
         }
-        improvementSprite.transform.position = startImprovementSpritePos + undergroundOffset * (1 - buildingRatio) * -improvementSprite.transform.up + offset;
-        offset = Vector3.zero;
-        if(buildingForce > 0)
-        {
-            offset = shakeOffset * (Random.Range(-1, 1) * transform.right + Random.Range(-1, 1) * transform.up);
-            buildingForce = 0;
-        }
-        activeSprite.transform.position = startActiveSpritePos + undergroundOffset * buildingRatio * -improvementSprite.transform.up + offset;
+        activeSprite.enabled = currentConfig.sprite != null;
+        activeSprite.sprite = currentConfig.sprite;
     }
 }
