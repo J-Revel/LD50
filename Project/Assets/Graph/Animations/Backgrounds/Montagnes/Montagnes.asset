@@ -17,12 +17,8 @@ MonoBehaviour:
     spriteAnim:
       sprites:
       - {fileID: 21300000, guid: baccea09d3055b7449b8fa238367659e, type: 3}
-      - {fileID: 21300000, guid: 17fa6ce11033a5a4c843907be962dca6, type: 3}
-      - {fileID: 21300000, guid: e3554abbd479269479079623b28d79b4, type: 3}
-      - {fileID: 21300000, guid: d5e7245ddcdedde4697a766d55ea3b19, type: 3}
-      - {fileID: 21300000, guid: fb3d4d27ff2891744acefaa1778ef98e, type: 3}
-      - {fileID: 21300000, guid: c6f843290c696894cb1717f88ad0e211, type: 3}
+      - {fileID: 21300000, guid: e2c7484ee52d34940bd4121ad4e4167a, type: 3}
       actionPoints: []
-      framePerSecond: 8
+      framePerSecond: 2
       loop: 1
   actionPointNames: []
