@@ -48,6 +48,7 @@ public class StockDragSource : MonoBehaviour
     {
         stock += count;
         text.text = "x" + stock;
+        dragSource.canTakeElement = true;
     }
 
     public void OnDragConfirmed()

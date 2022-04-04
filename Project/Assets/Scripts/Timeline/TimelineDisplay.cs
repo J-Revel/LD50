@@ -174,10 +174,12 @@ public class TimelineDisplay : MonoBehaviour
         float checkpointPosition = 0;
         
         bool obstaclePassed = false;
+        Dictionary<int, int> defeatCount = new Dictionary<int, int>();
         while(position < config.timelineLength)
         {
             int nextObstacleIndex = GetNextObstacleIndex(position);
             position += playerMovementSpeed * Time.deltaTime;
+            
             Vector3 playerWorldPosition = Vector3.Lerp(startPoint, endPoint, position / config.timelineLength);
             if(nextObstacleIndex >= 0 && !obstaclePassed && nextObstacleIndex < config.obstacles.Count && position >= config.obstacles[nextObstacleIndex].position)
             {
@@ -190,6 +192,7 @@ public class TimelineDisplay : MonoBehaviour
                     case ObstacleType.Checkpoint:
                         obstaclePassed = true;
                         checkpointPosition = config.obstacles[nextObstacleIndex].position;
+                        defeatCount.Clear();
                         break;
                     case ObstacleType.Obstacle:
                     case ObstacleType.Unit:
@@ -202,7 +205,13 @@ public class TimelineDisplay : MonoBehaviour
                         }
                         visibleObstacles[nextObstacleIndex].transform.position = obstacleStartPos;
                         player.transform.position = playerWorldPosition;
-                        float successRatio = config.obstacles[nextObstacleIndex].crossProbability;
+
+                        int probIndex = 0;
+                        if(defeatCount.ContainsKey(nextObstacleIndex))
+                            probIndex = defeatCount[nextObstacleIndex];
+                        float[] crossProbabilities = config.obstacles[nextObstacleIndex].crossProbabilities;
+                        float successRatio = crossProbabilities[Mathf.Min(probIndex, crossProbabilities.Length-1)];
+
                         if(Random.Range(0f, 1f) < successRatio && !forceDeath)
                         {
                             obstaclePassed = true;
@@ -215,6 +224,10 @@ public class TimelineDisplay : MonoBehaviour
                         }
                         else
                         {
+                            if(!defeatCount.ContainsKey(nextObstacleIndex))
+                                defeatCount[nextObstacleIndex] = 1;
+                            else defeatCount[nextObstacleIndex]++;
+
                             AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, player.explosionFxPosition.position + bubbleExplosionPrefab.transform.position, bubbleExplosionPrefab.transform.rotation);
                             Vector3 velocity = playerEjectionVelocity;
                             

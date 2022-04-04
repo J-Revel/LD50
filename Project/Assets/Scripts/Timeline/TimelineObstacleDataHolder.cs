@@ -16,7 +16,6 @@ public struct TimelineObstacle
 {
     public string id;
     public float position;
-    public float crossProbability;
     public float[] crossProbabilities;
     public ObstacleType obstacleType;
     public float crossProbabilityIncrease;
