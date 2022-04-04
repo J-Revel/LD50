@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5b4086b3a9f5040bbd13674e61b1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildSpeed: 1
-  defense: 1
+  buildSpeed: 2
+  defense: 0.5
   source: {fileID: 0}
   lastHolder: {fileID: 0}
 --- !u!1 &7259237803211653137

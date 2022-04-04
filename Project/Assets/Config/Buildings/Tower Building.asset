@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 1a4da3a4223fe51488c38f374dd2c901, type: 3}
   upgrades:
   - result: {fileID: 11400000, guid: 7ac8e81f9657375488fdaf1aaa43a6b9, type: 2}
-    buildingTime: 3
+    buildingTime: 20
   unitProductionDelay: 0
   unitProduced: None
   timelineLength: 2
