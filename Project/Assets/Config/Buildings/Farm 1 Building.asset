@@ -15,9 +15,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: cf54458982d57544fb7da2f91ecb407d, type: 3}
   upgrades:
   - result: {fileID: 11400000, guid: 6d6a91e599b295c4397709ddb5fcb25f, type: 2}
-    buildingTime: 2
+    buildingTime: 15
   - result: {fileID: 11400000, guid: 94b978a38c3f48440a0eb325c84ea7cf, type: 2}
-    buildingTime: 2
+    buildingTime: 15
   unitProductionDelay: 5
   unitProduced: Goomba
   timelineLength: 1

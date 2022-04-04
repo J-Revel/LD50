@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildSpeed: 1
-  defense: 1
+  defense: 2
   source: {fileID: 0}
   lastHolder: {fileID: 0}
 --- !u!1 &7259237803211653137
