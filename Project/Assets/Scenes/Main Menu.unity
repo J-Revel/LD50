@@ -418,6 +418,7 @@ MonoBehaviour:
   - {fileID: 1220588490048629174, guid: a798c97a52cf233498fd4113e1435423, type: 3}
   - {fileID: 1220588490048629174, guid: 4e6d6fd7fadd31749a7d6fa5528df160, type: 3}
   - {fileID: 1220588490048629174, guid: 496fd614e48d006418b9f42dfbc28c77, type: 3}
+  - {fileID: 3572546326561551187, guid: 5c9ada2932affb8459ba75d535343a65, type: 3}
   spawnTime: 0
 --- !u!1 &653260035
 GameObject:
