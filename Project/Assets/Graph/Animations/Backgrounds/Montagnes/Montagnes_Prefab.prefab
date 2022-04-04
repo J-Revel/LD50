@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2890740166672523465}
   - component: {fileID: 2890740166672523466}
+  - component: {fileID: 297141140997346807}
   m_Layer: 0
   m_Name: Montagnes_Prefab
   m_TagString: Untagged
@@ -84,3 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &297141140997346807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890740166672523508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae58007e121b04748bdf33d3221495f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2890740166672523466}
+  animList: {fileID: 11400000, guid: f0e0ef0bad032c2459bf2d915d4351d7, type: 2}
+  animIndex: 0
+  loopAnim: 1
