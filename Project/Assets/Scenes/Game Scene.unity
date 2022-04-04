@@ -639,7 +639,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 4.3528656e+30}
+  m_BoundingSphereOverride: {x: 9.1835e-41, y: NaN, z: 4.545857e-39, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -694,6 +694,9 @@ MonoBehaviour:
   level: {fileID: 1326408313}
   startCheckpoint: 2
   movementSpeed: 1
+  castleConfig: {fileID: 11400000, guid: 7ac8e81f9657375488fdaf1aaa43a6b9, type: 2}
+  furthestCastleSection: 0
+  furthestCastleCheckpoint: 0
 --- !u!114 &123811947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2815,8 +2818,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTilePrefabs:
-  - {fileID: 597077750456019218, guid: 7c2588413d64ecd4cbe1fff6337735c8, type: 3}
-  - {fileID: -4340601581437646632, guid: 36ad2c84e4a67094faf47607d2ac5145, type: 3}
+  - {fileID: 597077750456019218, guid: b520b33ceb7a79748977e9191b879d48, type: 3}
+  - {fileID: 597077750456019218, guid: 6612c6ca0b1f01f49893aa8731d40d7f, type: 3}
+  initialAdditionalTiles: 1
   tilePrefabs:
   - {fileID: 597077750456019218, guid: 7c2588413d64ecd4cbe1fff6337735c8, type: 3}
   - {fileID: -4340601581437646632, guid: 36ad2c84e4a67094faf47607d2ac5145, type: 3}

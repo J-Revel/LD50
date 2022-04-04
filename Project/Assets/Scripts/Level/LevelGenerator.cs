@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public LevelTile[] startTilePrefabs;
+    public int initialAdditionalTiles = 1;
     public LevelTile[] tilePrefabs;
     public float tileSpacing = 12;
     public bool addTile = false;
@@ -21,6 +22,10 @@ public class LevelGenerator : MonoBehaviour
         for(int i=0; i<startTilePrefabs.Length; i++)
         {
             GenerateTile(startTilePrefabs[i]);
+        }
+        for(int i=0; i<initialAdditionalTiles; i++)
+        {
+            GenerateNextTile();
         }
     }
 
