@@ -508,8 +508,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "The unstoppable BARIO strikes again! As always, he's determined to get
-    his princess CHEAP back by kicking your butt.\r\n\n\rAnd as usual, HE'll be the
-    hero of the story, and can\u2019t be stopped forever... Hard times for the honest
+    his princess CHEAP back by kicking your butt.\r\n\nAs usual, HE'll be the hero
+    of the story, and can\u2019t be stopped forever... Hard times for the honest
     MOWSER that you are!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc7fe567ca635c443ad53465d58aa9ec, type: 2}
