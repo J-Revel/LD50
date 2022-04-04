@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class DragTarget : MonoBehaviour, IDropHandler
 {
     public DraggableUnit containedUnit;
+    public Transform container;
     public System.Action contentReceivedDelegate;
     public void OnDrop(PointerEventData data)
     {
@@ -16,7 +17,7 @@ public class DragTarget : MonoBehaviour, IDropHandler
     }
     public void OnContentReceived(DraggableUnit elementPrefab, DragSource source, DragSource lastHolder)
     {
-        containedUnit = Instantiate(elementPrefab, transform.position, transform.rotation, transform);
+        containedUnit = Instantiate(elementPrefab, transform.position, transform.rotation, container != null ? container : transform);
         containedUnit.source = source;
         containedUnit.lastHolder = lastHolder;
         enabled = false;

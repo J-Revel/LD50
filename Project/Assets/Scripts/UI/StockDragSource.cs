@@ -12,10 +12,14 @@ public class StockDragSource : MonoBehaviour
 
     public TMPro.TextMeshProUGUI text;
     public int stock = 5;
+    public TimelineObstacle timelineObstacle;
+    public static Dictionary<string, StockDragSource> instances = new Dictionary<string, StockDragSource>();
+    public string id;
     
     
     private void Start()
     {
+        instances[id] = this;
         dragSource = GetComponent<DragSource>();
         dragSource.dragStartedDelegate += OnDragStarted;
         dragSource.dragCanceledDelegate += OnDragCanceled;
@@ -23,6 +27,7 @@ public class StockDragSource : MonoBehaviour
         dragSource.inSlotElementPrefabDelegate += () => {return inSlotElementPrefab;};
         dragSource.draggedElementPrefabDelegate += () => {return draggedElementPrefab;};
         dragSource.droppedElementPrefabDelegate += () => {return droppedElementPrefab;};
+        dragSource.obstacleDataDelegate += () => {return timelineObstacle;};
         text.text = "x" + stock;
     }
     

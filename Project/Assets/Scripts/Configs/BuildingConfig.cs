@@ -16,6 +16,6 @@ public class BuildingConfig : ScriptableObject
     public UpgradeConfig[] upgrades;
 
     public float unitProductionDelay;
-    public Transform unitProduced;
+    public string unitProduced;
     public float timelineLength;
 }

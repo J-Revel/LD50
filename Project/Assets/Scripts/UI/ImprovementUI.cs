@@ -23,10 +23,17 @@ public class ImprovementUI : MonoBehaviour
     public float focusZoom = 2;
     public float shakeOffset = 0.05f;
     public UpgradeSubMenu[] upgradeSubMenus;
+    public TranslationScaleAppear[] toAppearOnFocus;
+    public TimelineDisplay timeline;
     private int currentUpgradeIndex;
     
     public System.Action buildingFinishedDelegate;
     private bool hasFocus = false;
+    public GameObject productionPanel;
+    public RectTransform productionBar;
+    private float productionTime = 0;
+    public Transform productionPoint;
+    public float destroyAnimDuration = 2;
     
     void Start()
     {
@@ -34,6 +41,9 @@ public class ImprovementUI : MonoBehaviour
             activeSprite.sprite = currentConfig.sprite;
         else
             activeSprite.enabled = false;
+
+        productionPanel.SetActive(StockDragSource.instances.ContainsKey(currentConfig.unitProduced));
+        productionTime = 0;
             
         buildingFX.SetActive(false);
         startActiveSpritePos = activeSprite.transform.position;
@@ -66,13 +76,17 @@ public class ImprovementUI : MonoBehaviour
         CameraFocusManager.instance.focusLostDelegate += OnFocusLost;
         CameraFocusManager.instance.focusStolenDelegate += OnFocusLost;
         hasFocus = true;
+        foreach(TranslationScaleAppear element in toAppearOnFocus)
+        {
+            element.visible = true;
+        }
         for(int i=0; i<upgradeSubMenus.Length; i++)
         {
             upgradeSubMenus[i].visible = true;
         }
     }
 
-    private void OnFocusLost()
+    public void OnFocusLost()
     {
         hasFocus = false;
         CameraFocusManager.instance.focusLostDelegate -= OnFocusLost;
@@ -81,11 +95,44 @@ public class ImprovementUI : MonoBehaviour
         {
             upgradeSubMenus[i].visible = false;
         }
+        
+        foreach(TranslationScaleAppear element in toAppearOnFocus)
+        {
+            element.visible = false;
+        }
+    }
+
+    public void LockBuildingForCombat()
+    {
+        hasFocus = false;
+        CameraFocusManager.instance.focusLostDelegate -= OnFocusLost;
+        CameraFocusManager.instance.focusStolenDelegate -= OnFocusLost;
+        for(int i=0; i<upgradeSubMenus.Length; i++)
+        {
+            upgradeSubMenus[i].visible = false;
+        }
+        
+        foreach(TranslationScaleAppear element in toAppearOnFocus)
+        {
+            element.visible = false;
+        }
+        timeline.LockUnits();
     }
 
     void Update()
     {
-        
+        if(StockDragSource.instances.ContainsKey(currentConfig.unitProduced))
+        {
+            productionTime += Time.deltaTime;
+            productionBar.anchorMax = new Vector2(productionTime / currentConfig.unitProductionDelay, 1);
+            if(productionTime > currentConfig.unitProductionDelay)
+            {
+                productionTime = 0;
+                StockDragSource dragSource = StockDragSource.instances[currentConfig.unitProduced];
+                Instantiate(dragSource.droppedElementPrefab, productionPoint.position, productionPoint.rotation).source = dragSource.GetComponent<DragSource>();
+                productionTime = 0;
+            }
+        }
         if(currentUpgradeIndex >= 0 && pendingBuildingConfig != null)
         {
             float buildingForce = upgradeSubMenus[currentUpgradeIndex].buildingForce;
@@ -95,10 +142,13 @@ public class ImprovementUI : MonoBehaviour
             {
                 buildingTime = 0;
                 buildingFinishedDelegate?.Invoke();
+                GetComponent<TimelinePlayerRoutine>().ChangeTimelineLength((int)upgradeSubMenus[currentUpgradeIndex].upgradeConfig.result.timelineLength);
                 currentConfig = pendingBuildingConfig;
                 pendingBuildingConfig = null;
                 buildingFX.SetActive(false);
                 upgradeSubMenus[currentUpgradeIndex].ClosePanel();
+                productionPanel.SetActive(StockDragSource.instances.ContainsKey(currentConfig.unitProduced));
+                productionTime = 0;
                 if(hasFocus)
                 {
                     CameraFocusManager.instance.LoseFocus();
@@ -132,5 +182,22 @@ public class ImprovementUI : MonoBehaviour
         }
         activeSprite.enabled = currentConfig.sprite != null;
         activeSprite.sprite = currentConfig.sprite;
+    }
+
+    public IEnumerator DestroyAnimationCoroutine()
+    {
+        buildingFX.SetActive(true);
+        if(activeSprite.sprite == null)
+        {
+            yield break;
+        }
+        for(float time=0; time<destroyAnimDuration; time += Time.deltaTime)
+        {
+            Vector3 offset = Vector3.zero;
+            float animRatio = time / destroyAnimDuration;
+            offset = shakeOffset * (Random.Range(-1, 1) * transform.right + Random.Range(-1, 1) * transform.up);
+            activeSprite.transform.position = startImprovementSpritePos + undergroundOffset * animRatio * -improvementSprite.transform.up + offset;
+            yield return null;
+        }
     }
 }

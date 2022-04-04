@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class DraggableUnit : MonoBehaviour
 {
     public int buildSpeed = 1;
-    public int defense = 1;
+    public float defense = 0.2f;
     public DragSource source;
     public DragSource lastHolder;
 }

@@ -7,6 +7,8 @@ public enum ObstacleType
 {
     Obstacle,
     Checkpoint,
+    Unit,
+    Slot,
 }
 
 [System.Serializable]
@@ -17,7 +19,7 @@ public struct TimelineObstacle
     public float crossProbability;
     public ObstacleType obstacleType;
     public float crossProbabilityIncrease;
-    public GameObject bubblePrefab;
+    public BubbleWidget bubblePrefab;
     public Sprite icon;
 }
 

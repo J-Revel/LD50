@@ -19,5 +19,5 @@ MonoBehaviour:
   - result: {fileID: 11400000, guid: 6e0cc87e37a38b140b3eb2015c8aaad4, type: 2}
     buildingTime: 1
   unitProductionDelay: 0
-  unitProduced: {fileID: 0}
+  unitProduced: None
   timelineLength: 1

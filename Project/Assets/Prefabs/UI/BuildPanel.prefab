@@ -188,6 +188,7 @@ MonoBehaviour:
     m_Bits: 1
   offsetFromGround: 3
   assignSource: 1
+  canTakeElement: 1
 --- !u!114 &5591510892177753096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +313,7 @@ MonoBehaviour:
     m_Bits: 1
   offsetFromGround: 3
   assignSource: 1
+  canTakeElement: 1
 --- !u!114 &5591510893079444903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +438,7 @@ MonoBehaviour:
     m_Bits: 1
   offsetFromGround: 3
   assignSource: 1
+  canTakeElement: 1
 --- !u!114 &5591510893221386200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +558,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5591510893476933336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00042915344}
+  m_LocalPosition: {x: 0, y: 0, z: -2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -795,6 +798,7 @@ MonoBehaviour:
     m_Bits: 1
   offsetFromGround: 3
   assignSource: 1
+  canTakeElement: 1
 --- !u!114 &5591510893693626200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d7c2c4db2a088d746887bf3f1cb23a93, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

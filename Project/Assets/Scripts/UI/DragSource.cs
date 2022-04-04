@@ -6,10 +6,12 @@ using UnityEngine.EventSystems;
 public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotentialDragHandler, IDragHandler, IEndDragHandler
 {
     public delegate DraggableUnit DraggedElementDelegate();
+    public delegate TimelineObstacle TimelineObstacleDelegate();
     public DragSource nextDragSource;
     public DraggedElementDelegate draggedElementPrefabDelegate;
     public DraggedElementDelegate inSlotElementPrefabDelegate;
     public DraggedElementDelegate droppedElementPrefabDelegate;
+    public TimelineObstacleDelegate obstacleDataDelegate;
     public System.Action dragStartedDelegate;
     public System.Action dragCanceledDelegate;
     public System.Action dragConfirmedDelegate;
@@ -63,12 +65,19 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
     {
         Debug.Log("OnInitializePotentialDrag called.");
         DraggableUnit draggedElementPrefab = draggedElementPrefabDelegate();
-        if(draggedElementPrefab != null)
+        if(draggedElementPrefab != null && canTakeElement)
         {
             draggedElement = Instantiate(draggedElementPrefab, transform.position, draggedElementPrefab.transform.rotation);
             draggedElement.source = nextDragSource;
             draggedElement.lastHolder = this;
             dragStartedDelegate?.Invoke();
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit, 1000, raycastMask))
+            {
+                Debug.DrawLine(ray.origin, hit.point, Color.green, 3);
+                draggedElement.transform.position = hit.point - ray.direction * offsetFromGround;
+            }
         }
         else draggedElement = null;
     }

@@ -13,6 +13,7 @@ public class ActionRoutine : MonoBehaviour
 
     IEnumerator ApplyActionCoroutine()
     {
+        Debug.Log("PLAY ACTION");
         action.Invoke();
         yield return null;
     }
