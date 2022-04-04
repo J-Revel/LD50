@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: f5ab9fec4e8e7e745927bc7f6ce668fd, type: 3}
   upgrades: []
-  unitProductionDelay: 8
+  unitProductionDelay: 15
   unitProduced: Pikpik
   timelineLength: 1
