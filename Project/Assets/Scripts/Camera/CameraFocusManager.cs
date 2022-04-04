@@ -18,6 +18,7 @@ public class CameraFocusManager : MonoBehaviour
     public float startZoom;
     private float targetZoom;
     private Vector3 targetPosition;
+    private bool isTargetLocalPosition;
 
     public float transitionDuration = 0.5f;
 
@@ -30,16 +31,17 @@ public class CameraFocusManager : MonoBehaviour
     {
         if(!focusTaken)
         {
-            this.initialPosition = transform.position;
+            this.initialPosition = transform.localPosition;
             this.initialZoom = Camera.main.orthographicSize;
         }
         bool steal = focusTaken && canSteal;
         if(!focusTaken || canSteal)
         {
-            this.startPosition = transform.position;
+            this.startPosition = transform.localPosition;
             this.startZoom = Camera.main.orthographicSize;
             focusTaken = true;
             targetPosition = focusPosition;
+            isTargetLocalPosition = false;
             targetZoom = focusZoom;
             inTransition = true;
             transitionTime = 0;
@@ -61,7 +63,10 @@ public class CameraFocusManager : MonoBehaviour
                 inTransition = false;
             }
             float transitionRatio = 1 - (1 - transitionTime / transitionDuration) * (1 - transitionTime / transitionDuration);
-            transform.position = Vector3.Lerp(startPosition, targetPosition, transitionRatio);
+            Vector3 realTargetPosition = targetPosition;
+            if(isTargetLocalPosition)
+                realTargetPosition = transform.parent.TransformPoint(targetPosition);
+            transform.position = Vector3.Lerp(transform.parent.TransformPoint(startPosition), realTargetPosition, transitionRatio);
             Camera.main.orthographicSize = Mathf.Lerp(startZoom, targetZoom, transitionRatio);
         }
     }
@@ -73,8 +78,9 @@ public class CameraFocusManager : MonoBehaviour
             focusTaken = false;
             inTransition = true;
             targetPosition = initialPosition;
+            isTargetLocalPosition = true;
             targetZoom = initialZoom;
-            startPosition = transform.position;
+            startPosition = transform.localPosition;
             startZoom = Camera.main.orthographicSize;
             transitionTime = 0;
             focusLostDelegate?.Invoke();

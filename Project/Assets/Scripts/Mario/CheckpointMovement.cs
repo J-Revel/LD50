@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointMovement : MonoBehaviour
 {
-    public Transform checkpointContainer;
+    public LevelGenerator level;
     private AnimatedSprite animatedSprite;
     public int currentCheckpoint;
     public float movementSpeed = 1;
@@ -16,19 +16,24 @@ public class CheckpointMovement : MonoBehaviour
 
     private IEnumerator MovementCoroutine()
     {
-        Vector3 previousPosition = checkpointContainer.GetChild(0).position;
-        for(int i=1; i<checkpointContainer.childCount; i++)
+        Vector3 previousPosition = level.generatedTiles[0].path.GetChild(0).position;
+        for(int sectionIndex = 0; sectionIndex <level.generatedTiles.Count; sectionIndex++)
         {
-            Transform nextCheckpoint = checkpointContainer.GetChild(i);
-            Vector3 nextPosition = nextCheckpoint.position;
-            yield return StepMovementCoroutine(previousPosition, nextPosition);
-            RoutineSequence checkpointSequence = nextCheckpoint.GetComponent<RoutineSequence>();
-            if(checkpointSequence != null)
+            Transform checkpointContainer = level.generatedTiles[sectionIndex].path;
+            for(int i=1; i<checkpointContainer.childCount; i++)
             {
-                animatedSprite.SelectAnim("Idle", true);
-                yield return checkpointSequence.MainCoroutine();
+                Transform nextCheckpoint = checkpointContainer.GetChild(i);
+                Vector3 nextPosition = nextCheckpoint.position;
+                yield return StepMovementCoroutine(previousPosition, nextPosition);
+                RoutineSequence checkpointSequence = nextCheckpoint.GetComponent<RoutineSequence>();
+                if(checkpointSequence != null)
+                {
+                    animatedSprite.SelectAnim("Idle", true);
+                    yield return checkpointSequence.MainCoroutine();
+                }
+                previousPosition = nextPosition;
             }
-            previousPosition = nextPosition;
+            
         }
     }
 
