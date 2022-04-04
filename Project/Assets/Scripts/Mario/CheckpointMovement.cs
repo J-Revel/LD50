@@ -16,6 +16,7 @@ public class CheckpointMovement : MonoBehaviour
 
     private IEnumerator MovementCoroutine()
     {
+        yield return null;
         Vector3 previousPosition = level.generatedTiles[0].path.GetChild(0).position;
         for(int sectionIndex = 0; sectionIndex <level.generatedTiles.Count; sectionIndex++)
         {
