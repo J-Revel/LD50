@@ -8,6 +8,9 @@ public class MowserMovement : MonoBehaviour
     private AnimatedSprite animatedSprite;
     public int startCheckpoint;
     public float movementSpeed = 1;
+    public float maxMovementSpeed = 2;
+    public float increaseDuration = 60;
+    private float time = 0;
     public BuildingConfig castleConfig;
     public int furthestCastleSection;
     public int furthestCastleCheckpoint;
@@ -17,6 +20,11 @@ public class MowserMovement : MonoBehaviour
         animatedSprite = GetComponent<AnimatedSprite>();
         level.castleBuiltDelegate += OnCastleBuilt;
         StartCoroutine(MovementCoroutine());
+    }
+
+    void Update()
+    {
+        time += Time.deltaTime;
     }
 
     private IEnumerator MovementCoroutine()
@@ -46,7 +54,7 @@ public class MowserMovement : MonoBehaviour
 
     private IEnumerator StepMovementCoroutine(Vector3 currentCheckpointPosition, Vector3 targetCheckpointPosition)
     {
-        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / movementSpeed;
+        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / Mathf.Lerp(movementSpeed, maxMovementSpeed, time / increaseDuration);
         SpriteRenderer spriteRenderer = animatedSprite.spriteRenderer;
         for(float time = 0; time < duration; time += Time.deltaTime)
         {

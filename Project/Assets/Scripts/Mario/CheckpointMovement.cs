@@ -8,10 +8,19 @@ public class CheckpointMovement : MonoBehaviour
     private AnimatedSprite animatedSprite;
     public int currentCheckpoint;
     public float movementSpeed = 1;
+    public float maxMovementSpeed = 2;
+    public float increaseDuration = 60;
+    private float time = 0;
     void Start()
     {
         animatedSprite = GetComponent<AnimatedSprite>();
         StartCoroutine(MovementCoroutine());
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+
     }
 
     private IEnumerator MovementCoroutine()
@@ -40,7 +49,7 @@ public class CheckpointMovement : MonoBehaviour
 
     private IEnumerator StepMovementCoroutine(Vector3 currentCheckpointPosition, Vector3 targetCheckpointPosition)
     {
-        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / movementSpeed;
+        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / Mathf.Lerp(movementSpeed, maxMovementSpeed, time / increaseDuration);
         SpriteRenderer spriteRenderer = animatedSprite.spriteRenderer;
         for(float time = 0; time < duration; time += Time.deltaTime)
         {
