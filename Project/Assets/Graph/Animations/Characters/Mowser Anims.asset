@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13426e9ead40efb40b3fde96cfad97aa, type: 3}
-  m_Name: Mario_Anim_Map
+  m_Name: Mowser Anims
   m_EditorClassIdentifier: 
   spriteAnims:
-  - name: Mario_Anim_Course
+  - name: Walk
     spriteAnim:
       sprites:
-      - {fileID: 21300000, guid: 40ed58b4902d9964890906f9d95f813a, type: 3}
-      - {fileID: 21300000, guid: f0a55782c189fce42b95dd437953c2a4, type: 3}
+      - {fileID: 21300000, guid: 0eb02f05e0d86924aaa05822cc11b79c, type: 3}
+      - {fileID: 21300000, guid: 920fc68b4bd4332448f7dc621069736d, type: 3}
       actionPoints: []
       framePerSecond: 8
       loop: 1
