@@ -16,7 +16,10 @@ public class SectionCameraMovement : MonoBehaviour
 
     void Start()
     {
-        
+        level.tileGeneratedDelegate += () => {
+            rightButton.SetActive(visibleSectionIndex < level.generatedTiles.Count - 1);
+            leftButton.SetActive(visibleSectionIndex > 0);
+        };
     }
 
     public void MoveRight()

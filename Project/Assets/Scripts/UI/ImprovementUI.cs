@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ImprovementUI : MonoBehaviour
 {
+    public int checkpointIndex;
     public BuildingConfig currentConfig;
     public BuildingConfig pendingBuildingConfig;
     // public Button[] panelButtons;
@@ -34,6 +35,7 @@ public class ImprovementUI : MonoBehaviour
     private float productionTime = 0;
     public Transform productionPoint;
     public float destroyAnimDuration = 2;
+    public BuildingConfig castleConfig;
     
     void Start()
     {
@@ -142,10 +144,15 @@ public class ImprovementUI : MonoBehaviour
             {
                 buildingTime = 0;
                 buildingFinishedDelegate?.Invoke();
-                GetComponent<TimelinePlayerRoutine>().ChangeTimelineLength((int)upgradeSubMenus[currentUpgradeIndex].upgradeConfig.result.timelineLength);
+                UpgradeConfig upgradeConfig = upgradeSubMenus[currentUpgradeIndex].upgradeConfig;
+                GetComponent<TimelinePlayerRoutine>().ChangeTimelineLength((int)upgradeConfig.result.timelineLength);
                 currentConfig = pendingBuildingConfig;
                 pendingBuildingConfig = null;
                 buildingFX.SetActive(false);
+                if(upgradeConfig.result == castleConfig)
+                {
+                    GetComponentInParent<LevelTile>().castleBuiltDelegate?.Invoke(checkpointIndex);
+                }
                 upgradeSubMenus[currentUpgradeIndex].ClosePanel();
                 productionPanel.SetActive(StockDragSource.instances.ContainsKey(currentConfig.unitProduced));
                 productionTime = 0;

@@ -52,7 +52,7 @@ public class CameraFocusManager : MonoBehaviour
         return false;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if(inTransition)
         {

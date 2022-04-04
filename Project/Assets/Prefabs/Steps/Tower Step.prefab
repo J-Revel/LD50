@@ -1033,6 +1033,7 @@ MonoBehaviour:
   - id: Fireball
     position: 0
     crossProbability: 0.8
+    crossProbabilities: []
     obstacleType: 0
     crossProbabilityIncrease: 0.1
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -1040,6 +1041,7 @@ MonoBehaviour:
   - id: Piranha
     position: 0
     crossProbability: 0.8
+    crossProbabilities: []
     obstacleType: 0
     crossProbabilityIncrease: 0.1
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -1048,6 +1050,7 @@ MonoBehaviour:
     id: Slot
     position: 0
     crossProbability: 0
+    crossProbabilities: []
     obstacleType: 3
     crossProbabilityIncrease: 0
     bubblePrefab: {fileID: 0}
@@ -1056,6 +1059,7 @@ MonoBehaviour:
     id: Checkpoint
     position: 0
     crossProbability: 0
+    crossProbabilities: []
     obstacleType: 1
     crossProbabilityIncrease: 0
     bubblePrefab: {fileID: 5562409692048405269, guid: 85c72868f9a2a1642a5b73777dbb06bf, type: 3}
@@ -1095,6 +1099,7 @@ MonoBehaviour:
   productionBar: {fileID: 1063496028296837280}
   productionPoint: {fileID: 5017486681855354046}
   destroyAnimDuration: 2
+  castleConfig: {fileID: 11400000, guid: 7ac8e81f9657375488fdaf1aaa43a6b9, type: 2}
 --- !u!114 &7738625057239192867
 MonoBehaviour:
   m_ObjectHideFlags: 0
