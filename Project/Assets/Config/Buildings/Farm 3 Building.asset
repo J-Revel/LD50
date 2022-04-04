@@ -15,5 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: f5ab9fec4e8e7e745927bc7f6ce668fd, type: 3}
   upgrades: []
   unitProductionDelay: 15
-  unitProduced: Pikpik
+  unitProduced: Koopa
   timelineLength: 1
