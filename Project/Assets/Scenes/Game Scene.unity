@@ -244,7 +244,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -0.42156982}
+  m_margin: {x: 0, y: 0, z: -25.59889, w: -0.42156982}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -480,7 +480,10 @@ MonoBehaviour:
     id: Koopa
     position: 0
     crossProbability: 0.3
-    crossProbabilities: []
+    crossProbabilities:
+    - 0.6
+    - 0.7
+    - 0.8
     obstacleType: 2
     crossProbabilityIncrease: 0
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -855,7 +858,10 @@ MonoBehaviour:
     id: Goomba
     position: 0
     crossProbability: 0.5
-    crossProbabilities: []
+    crossProbabilities:
+    - 0.3
+    - 0.6
+    - 0.8
     obstacleType: 2
     crossProbabilityIncrease: 0
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -1255,7 +1261,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -0.42156982}
+  m_margin: {x: 0, y: 0, z: -29.836462, w: -0.42156982}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1462,7 +1468,9 @@ MonoBehaviour:
     id: Goomba
     position: 0
     crossProbability: 0.2
-    crossProbabilities: []
+    crossProbabilities:
+    - 0.7
+    - 0.9
     obstacleType: 2
     crossProbabilityIncrease: 0
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -2071,7 +2079,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -0.42156982}
+  m_margin: {x: 0, y: 0, z: -17.304077, w: -0.42156982}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -1033,7 +1033,10 @@ MonoBehaviour:
   - id: Fireball
     position: 0
     crossProbability: 0.8
-    crossProbabilities: []
+    crossProbabilities:
+    - 0.6
+    - 0.8
+    - 0.9
     obstacleType: 0
     crossProbabilityIncrease: 0.1
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -1041,7 +1044,11 @@ MonoBehaviour:
   - id: Piranha
     position: 0
     crossProbability: 0.8
-    crossProbabilities: []
+    crossProbabilities:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 0.9
     obstacleType: 0
     crossProbabilityIncrease: 0.1
     bubblePrefab: {fileID: 5855955817292633456, guid: de37f4dd1556a474b932153415c64d71, type: 3}
@@ -1078,6 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf2943a6b827214f844ae528ac85773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointIndex: 0
   currentConfig: {fileID: 11400000, guid: 47c680b5cdf2ca442b65e46185528310, type: 2}
   pendingBuildingConfig: {fileID: 0}
   activeSprite: {fileID: 3910761131171347155}

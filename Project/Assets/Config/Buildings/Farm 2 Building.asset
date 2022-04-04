@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 008f906d2444ac04ca95adc0ed586821, type: 3}
   upgrades: []
-  unitProductionDelay: 8
+  unitProductionDelay: 15
   unitProduced: Koopa
   timelineLength: 1
