@@ -1369,6 +1369,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7076915399393126310}
+          m_TargetAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_MethodName: set_sprite
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 21300000, guid: d84be3267eafa084cbfe72b83f492eab, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7076915399393126310}
+          m_TargetAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_MethodName: set_sprite
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 21300000, guid: 8988407a5705dfd40917df3762c53e7e, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &6942087115311484484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1754,6 +1782,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildPanel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: buildingDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: upgradeConfig.buildingTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8453568613969119537, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1997,6 +2033,14 @@ PrefabInstance:
     - target: {fileID: 5591510893512383420, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
       propertyPath: m_Name
       value: BuildPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: buildingDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: upgradeConfig.buildingTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
