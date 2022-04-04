@@ -29,6 +29,7 @@ public class StockDragSource : MonoBehaviour
         dragSource.droppedElementPrefabDelegate += () => {return droppedElementPrefab;};
         dragSource.obstacleDataDelegate += () => {return timelineObstacle;};
         text.text = "x" + stock;
+        dragSource.canTakeElement = stock > 0;
     }
     
     public void OnDragStarted()
