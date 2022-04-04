@@ -12,6 +12,9 @@ public class PathTracer : MonoBehaviour
         lineRenderer.positionCount = transform.childCount;
         for(int i=0; i<transform.childCount; i++)
         {
+            ImprovementUI improvementUI = transform.GetChild(i).GetComponentInChildren<ImprovementUI>();
+            if(improvementUI != null)
+                improvementUI.checkpointIndex = i;
             lineRenderer.SetPosition(i, transform.GetChild(i).position);
         }
     }
