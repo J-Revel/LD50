@@ -1777,6 +1777,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildPanel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: buildingDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: upgradeConfig.buildingTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8453568613969119537, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -2020,6 +2028,14 @@ PrefabInstance:
     - target: {fileID: 5591510893512383420, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
       propertyPath: m_Name
       value: BuildPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: buildingDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250861923611347438, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
+      propertyPath: upgradeConfig.buildingTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd228f1b63419f42848bea0dfce37c0, type: 3}
