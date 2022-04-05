@@ -11,6 +11,7 @@ public class CheckpointMovement : MonoBehaviour
     public float maxMovementSpeed = 2;
     public float increaseDuration = 60;
     private float time = 0;
+    public GameObject bubblePrefab;
     void Start()
     {
         animatedSprite = GetComponent<AnimatedSprite>();
@@ -39,7 +40,42 @@ public class CheckpointMovement : MonoBehaviour
                 if(checkpointSequence != null)
                 {
                     animatedSprite.SelectAnim("Idle", true);
+                    float fadeDuration = 0.5f;
+                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    {
+                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                        {
+                            transform.localScale = Vector3.one * (1 - t/fadeDuration);
+                            yield return null;
+                        }
+                    }
+                    GameObject bubble = Instantiate(bubblePrefab, nextCheckpoint.transform);
+                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    {
+                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                        {
+                            bubble.transform.localScale = bubblePrefab.transform.localScale * (t/fadeDuration);
+                            yield return null;
+                        }
+                    }
                     yield return checkpointSequence.MainCoroutine();
+                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    {
+                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                        {
+                            bubble.transform.localScale = bubblePrefab.transform.localScale * (1 - t/fadeDuration);
+                            yield return null;
+                        }
+                    }
+                    Destroy(bubble);
+                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    {
+                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                        {
+                            transform.localScale = Vector3.one * (t/fadeDuration);
+                            yield return null;
+                        }
+                    }
                 }
                 previousPosition = nextPosition;
             }

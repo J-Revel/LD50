@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotentialDragHandler, IDragHandler, IEndDragHandler
+public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotentialDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler
 {
     public delegate DraggableUnit DraggedElementDelegate();
     public delegate TimelineObstacle TimelineObstacleDelegate();
@@ -32,7 +32,22 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
 
     public void OnBeginDrag(PointerEventData data)
     {
-        Debug.Log("OnBeginDrag called.");
+        DraggableUnit draggedElementPrefab = draggedElementPrefabDelegate();
+        if(draggedElementPrefab != null && canTakeElement)
+        {
+            draggedElement = Instantiate(draggedElementPrefab, transform.position, draggedElementPrefab.transform.rotation);
+            draggedElement.source = nextDragSource;
+            draggedElement.lastHolder = this;
+            dragStartedDelegate?.Invoke();
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit, 1000, raycastMask))
+            {
+                Debug.DrawLine(ray.origin, hit.point, Color.green, 3);
+                draggedElement.transform.position = hit.point - ray.direction * offsetFromGround;
+            }
+        }
+        else draggedElement = null;
     }
     public void OnDrag(PointerEventData data)
     {
@@ -61,9 +76,8 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
         }
     }
 
-    public void OnInitializePotentialDrag(PointerEventData data)
+    public void OnPointerUp(PointerEventData data)
     {
-        Debug.Log("OnInitializePotentialDrag called.");
         DraggableUnit draggedElementPrefab = draggedElementPrefabDelegate();
         if(draggedElementPrefab != null && canTakeElement)
         {
@@ -80,6 +94,10 @@ public class DragSource : MonoBehaviour, IBeginDragHandler, IInitializePotential
             }
         }
         else draggedElement = null;
+    }
+
+    public void OnInitializePotentialDrag(PointerEventData data)
+    {
     }
 
     public void OnDropInTarget(DragTarget target)

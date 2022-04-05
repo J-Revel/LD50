@@ -70,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5059682692373597124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7136,6 +7136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 6495466622715350020}
   cameraTarget: {fileID: 1770289950383821654}
+  sectionIndex: 0
 --- !u!1 &6495466624417710057
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,6 +7606,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6495466623950614519}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 
@@ -8909,6 +8914,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6495466622463355985}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9491,6 +9500,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6495466622920672233}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9961,6 +9974,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6495466623645976930}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 
@@ -10035,6 +10052,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6495466622744907935}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 

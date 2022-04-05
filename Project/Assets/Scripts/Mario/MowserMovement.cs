@@ -17,6 +17,7 @@ public class MowserMovement : MonoBehaviour
     private bool newCastleBuilt;
     public Transform gameOverPrefab;
     public static MowserMovement instance;
+    public GameObject bubblePrefab;
 
     private void Awake()
     {
@@ -51,9 +52,31 @@ public class MowserMovement : MonoBehaviour
                 ImprovementUI improvementUI = nextCheckpoint.GetComponentInChildren<ImprovementUI>();
                 if(improvementUI != null && improvementUI.currentConfig == castleConfig && (sectionIndex > furthestCastleSection || (sectionIndex == furthestCastleSection && i >= furthestCastleCheckpoint)))
                 {
+                    float fadeDuration = 0.5f;
+                    for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                    {
+                        transform.localScale = Vector3.one * (1 - t/fadeDuration);
+                        yield return null;
+                    }
+                    GameObject bubble = Instantiate(bubblePrefab, nextCheckpoint.transform);
+                    for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                    {
+                        bubble.transform.localScale = bubblePrefab.transform.localScale * (t/fadeDuration);
+                        yield return null;
+                    }
                     while(!newCastleBuilt)
                         yield return null;
                     newCastleBuilt = false;
+                    for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                    {
+                        bubble.transform.localScale = bubblePrefab.transform.localScale * (1 - t/fadeDuration);
+                        yield return null;
+                    }
+                    for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                    {
+                        transform.localScale = Vector3.one * (t/fadeDuration);
+                        yield return null;
+                    }
                 }
                 previousPosition = nextPosition;
             }

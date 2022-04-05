@@ -641,7 +641,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 844.507, y: 1.4664348e-19, z: 2.9642022e+29, w: 2.6785215e+20}
+  m_BoundingSphereOverride: {x: 1, y: 1.0000001, z: 8.1e-44, w: 1.5742e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -702,6 +702,7 @@ MonoBehaviour:
   furthestCastleSection: 0
   furthestCastleCheckpoint: 0
   gameOverPrefab: {fileID: 3718102540054202677, guid: b0d4e8461ff0d49448bb0f0d75a08c73, type: 3}
+  bubblePrefab: {fileID: 2595656251743155834, guid: 4043547d990676d49ae2bd89dc4fb615, type: 3}
 --- !u!114 &123811947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,9 +1056,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -97, y: 42}
-  m_SizeDelta: {x: 177.29999, y: 65.99}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.5202332, y: 42}
+  m_SizeDelta: {x: 230, y: 65.99}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &306436652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,6 +1573,7 @@ MonoBehaviour:
   movementSpeed: 1
   maxMovementSpeed: 5
   increaseDuration: 300
+  bubblePrefab: {fileID: 2595656251743155834, guid: b5daacf952ae9714cae4c83feb48bb2c, type: 3}
 --- !u!114 &398002325
 MonoBehaviour:
   m_ObjectHideFlags: 0

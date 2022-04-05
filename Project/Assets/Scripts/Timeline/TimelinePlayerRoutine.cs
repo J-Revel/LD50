@@ -18,7 +18,10 @@ public class TimelinePlayerRoutine : MonoBehaviour
     void Start()
     {
         improvementUI = GetComponent<ImprovementUI>();
-        GenerateRandomTimeline(1);
+        int timelineLength = 1;
+        if(improvementUI.currentConfig != null)
+            timelineLength = (int)improvementUI.currentConfig.timelineLength;
+        GenerateRandomTimeline(timelineLength);
         GetComponentInParent<RoutineSequence>().RegisterRoutine(TimelinePlayerCoroutine(), 0);
         dataHolder = gameObject.AddComponent<TimelineDataHolder>();
         dataHolder.timelineData = config;
