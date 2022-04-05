@@ -12,13 +12,15 @@ public class TimelinePlayerRoutine : MonoBehaviour
     public TimelineConfig config;
     public float obstacleProbability = 0.3f;
     private ImprovementUI improvementUI;
+    private TimelineDataHolder dataHolder;
+    public float timelineAppearDuration = 0.5f;
 
     void Start()
     {
         improvementUI = GetComponent<ImprovementUI>();
         GenerateRandomTimeline(1);
         GetComponentInParent<RoutineSequence>().RegisterRoutine(TimelinePlayerCoroutine(), 0);
-        TimelineDataHolder dataHolder = gameObject.AddComponent<TimelineDataHolder>();
+        dataHolder = gameObject.AddComponent<TimelineDataHolder>();
         dataHolder.timelineData = config;
     }
 
@@ -95,10 +97,25 @@ public class TimelinePlayerRoutine : MonoBehaviour
 
     public IEnumerator TimelinePlayerCoroutine()
     {
-        TimelineDisplay timeline = Instantiate(timelinePrefab, timelineContainer);
+        TimelineDisplay timeline = Instantiate(timelinePrefab, transform.position, TimelineContainer.instance.transform.rotation);
+        timeline.gameObject.AddComponent<TimelineDataHolder>().timelineData = config;
+
+        timeline.transform.SetParent(TimelineContainer.instance.transform);
+        for(float time = 0; time < timelineAppearDuration; time += Time.deltaTime)
+        {
+            timeline.transform.localPosition = Vector3.Lerp(timeline.transform.parent.InverseTransformPoint(transform.position), Vector3.zero, time / timelineAppearDuration);;
+            timeline.transform.localScale = Vector3.one * Mathf.Max(0.01f, time / timelineAppearDuration);
+            yield return null;
+        }
         TimelineDataHolder dataHolder = timeline.gameObject.AddComponent<TimelineDataHolder>();
         dataHolder.timelineData = config;
         yield return timeline.PlayTimelineCoroutine();
+        for(float time = 0; time < timelineAppearDuration; time += Time.deltaTime)
+        {
+            timeline.transform.localPosition = Vector3.Lerp(Vector3.zero, timeline.transform.parent.InverseTransformPoint(TimelineContainer.instance.transform.position), 1 - time / timelineAppearDuration);
+            timeline.transform.localScale = Vector3.one * (1 - time / timelineAppearDuration);
+            yield return null;
+        }
         Destroy(timeline.gameObject);
         yield return improvementUI.DestroyAnimationCoroutine();
     }

@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 125.595}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 247, y: -237}
+  m_AnchoredPosition: {x: 76, y: -162}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8129911086518804825
@@ -126,7 +126,7 @@ RectTransform:
   m_GameObject: {fileID: 3572546326561551187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 272561736408031870}
@@ -138,8 +138,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: 484, y: 313.5}
+  m_SizeDelta: {x: 968, y: 627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3572546326561551184
 CanvasRenderer:
@@ -220,7 +220,7 @@ RectTransform:
   m_GameObject: {fileID: 4314050826069856010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3572546326561551186}
@@ -228,7 +228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -505, y: -289}
+  m_AnchoredPosition: {x: -291, y: -162}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2283383998015020742
@@ -474,10 +474,10 @@ RectTransform:
   m_Father: {fileID: 3572546326561551186}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 225}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -176.9647}
+  m_SizeDelta: {x: -59.999992, y: 229.4294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3125289525932195170
 CanvasRenderer:
@@ -507,10 +507,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The unstoppable BARIO strikes again! As always, he's determined to get
-    his princess CHEAP back by kicking your butt.\r\n\nAs usual, HE'll be the hero
-    of the story, and can\u2019t be stopped forever... Hard times for the honest
-    MOWSER that you are!"
+  m_text: 'Looks like Bario is angry, maybe kidnapping the princess was not the best
+    idea after all !
+
+
+    He is the hero of the story, so there''s no way he can
+    be stopped forever... But you can make his life harder !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc7fe567ca635c443ad53465d58aa9ec, type: 2}
   m_sharedMaterial: {fileID: 2235899996938605821, guid: bc7fe567ca635c443ad53465d58aa9ec, type: 2}
@@ -537,8 +539,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63
-  m_fontSizeBase: 63
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -573,7 +575,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -712.94714, y: -220.4367, z: -784.7235, w: -235.12692}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -608,7 +610,7 @@ RectTransform:
   m_GameObject: {fileID: 8955819155031892481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.32, y: 4.32, z: 4.32}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3572546326561551186}
@@ -616,7 +618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 523, y: -241}
+  m_AnchoredPosition: {x: 227, y: -124}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1811770850604567154

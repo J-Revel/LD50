@@ -15,10 +15,19 @@ public class MowserMovement : MonoBehaviour
     public int furthestCastleSection;
     public int furthestCastleCheckpoint;
     private bool newCastleBuilt;
+    public Transform gameOverPrefab;
+    public static MowserMovement instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         animatedSprite = GetComponent<AnimatedSprite>();
         level.castleBuiltDelegate += OnCastleBuilt;
+        level.castleDestroyedDelegate += OnCastleDestroyed;
         StartCoroutine(MovementCoroutine());
     }
 
@@ -72,6 +81,15 @@ public class MowserMovement : MonoBehaviour
             newCastleBuilt = true;
             furthestCastleSection = sectionIndex;
             furthestCastleCheckpoint = checkpointIndex;
+        }
+    }
+
+    public void OnCastleDestroyed(int sectionIndex, int checkpointIndex)
+    {
+        if(sectionIndex > furthestCastleSection || (sectionIndex == furthestCastleSection && checkpointIndex > furthestCastleCheckpoint))
+        {
+            Debug.Log("Last Castled Destroyed");
+            Instantiate(gameOverPrefab);
         }
     }
 }

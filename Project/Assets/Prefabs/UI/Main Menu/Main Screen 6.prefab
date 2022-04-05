@@ -150,6 +150,8 @@ GameObject:
   - component: {fileID: 8068691098614276761}
   - component: {fileID: 7634162639837308297}
   - component: {fileID: 4979379565655486252}
+  - component: {fileID: 6570949259149843805}
+  - component: {fileID: 3239655174273847914}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -272,6 +274,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6570949259149843805}
+        m_TargetAssemblyTypeName: RoutineSequence, Assembly-CSharp
+        m_MethodName: LaunchTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8068691098614276761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +350,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6570949259149843805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102603705208278592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7110351223db8e4bbba28752dd45473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAtStart: 0
+  registeredRoutines: []
+--- !u!114 &3239655174273847914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102603705208278592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd2caba603937b4aa0fae934295c9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1000
+  sceneName: Game Scene
 --- !u!1 &3572546326561551187
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +406,7 @@ RectTransform:
   m_GameObject: {fileID: 3572546326561551187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8779474648326944159}
@@ -377,7 +419,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 968, y: 627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3572546326561551184
 CanvasRenderer:

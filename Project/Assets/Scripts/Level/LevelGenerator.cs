@@ -15,6 +15,7 @@ public class LevelGenerator : MonoBehaviour
 
     public List<LevelTile> generatedTiles = new List<LevelTile>();
     public System.Action<int, int> castleBuiltDelegate;
+    public System.Action<int, int> castleDestroyedDelegate;
     public System.Action tileGeneratedDelegate;
 
     void Start()
@@ -46,6 +47,10 @@ public class LevelGenerator : MonoBehaviour
             castleBuiltDelegate?.Invoke(tileIndex, checkpointIndex);
             UnlockNextSection(tileIndex);
         };
+        tile.castleDestroyedDelegate += (int checkpointIndex) => {
+            castleDestroyedDelegate?.Invoke(tileIndex, checkpointIndex);
+            UnlockNextSection(tileIndex);
+        };
         tile.sectionIndex = tileCount;
         generatedTiles.Add(tile);
         tileCount++;
@@ -58,6 +63,10 @@ public class LevelGenerator : MonoBehaviour
         int tileIndex = tileCount;
         tile.castleBuiltDelegate += (int checkpointIndex) => {
             castleBuiltDelegate?.Invoke(tileIndex, checkpointIndex);
+            UnlockNextSection(tileIndex);
+        };
+        tile.castleDestroyedDelegate += (int checkpointIndex) => {
+            castleDestroyedDelegate?.Invoke(tileIndex, checkpointIndex);
             UnlockNextSection(tileIndex);
         };
         tile.sectionIndex = tileCount;

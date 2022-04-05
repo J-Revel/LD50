@@ -920,6 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 2432323332074620188}
   cameraTarget: {fileID: 7273739582153982368}
+  sectionIndex: 0
 --- !u!1 &2432323330255867984
 GameObject:
   m_ObjectHideFlags: 0
@@ -7256,7 +7257,7 @@ LineRenderer:
   - {x: -2, y: 0.00000011920929, z: 0.00000011920932}
   - {x: 2, y: 0, z: 0}
   - {x: 3, y: 0, z: 0}
-  - {x: 7, y: 0, z: 0}
+  - {x: 6, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1.2
@@ -9146,7 +9147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077101561266418841}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10187,6 +10188,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2432323330088049624}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 
@@ -11723,6 +11728,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2432323330891617673}
     m_Modifications:
+    - target: {fileID: 1169543980620376095, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
+      propertyPath: checkpointIndex
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3910761130087957399, guid: 37f99467ec5620042b5d5787fe67c505, type: 3}
       propertyPath: m_Camera
       value: 

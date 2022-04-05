@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragTarget : MonoBehaviour, IDropHandler
+public class DragTarget : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public DraggableUnit containedUnit;
     public Transform container;
     public System.Action contentReceivedDelegate;
+    public GameObject hoverElement;
     public void OnDrop(PointerEventData data)
     {
         Debug.Log("OnDrop called.");
@@ -22,6 +23,16 @@ public class DragTarget : MonoBehaviour, IDropHandler
         containedUnit.lastHolder = lastHolder;
         enabled = false;
         contentReceivedDelegate?.Invoke();
+    }
+
+    public void OnPointerEnter(PointerEventData data)
+    {
+        hoverElement?.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData data)
+    {
+        hoverElement?.SetActive(false);
     }
 
     public void OnContentTaken()

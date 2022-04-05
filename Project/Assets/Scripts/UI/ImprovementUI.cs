@@ -206,5 +206,9 @@ public class ImprovementUI : MonoBehaviour
             activeSprite.transform.position = startImprovementSpritePos + undergroundOffset * animRatio * -improvementSprite.transform.up + offset;
             yield return null;
         }
+        if(currentConfig == castleConfig)
+        {
+            GetComponentInParent<LevelTile>().castleDestroyedDelegate?.Invoke(checkpointIndex);
+        }
     }
 }
