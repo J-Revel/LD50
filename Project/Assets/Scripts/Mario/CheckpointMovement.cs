@@ -41,8 +41,10 @@ public class CheckpointMovement : MonoBehaviour
                 {
                     animatedSprite.SelectAnim("Idle", true);
                     float fadeDuration = 0.5f;
-                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    ImprovementUI improvementUI = checkpointSequence.GetComponentInChildren<ImprovementUI>();
+                    if(improvementUI != null)
                     {
+                        improvementUI.LockBuildingForCombat();
                         for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                         {
                             transform.localScale = Vector3.one * (1 - t/fadeDuration);
@@ -50,7 +52,7 @@ public class CheckpointMovement : MonoBehaviour
                         }
                     }
                     GameObject bubble = Instantiate(bubblePrefab, nextCheckpoint.transform);
-                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    if(improvementUI != null)
                     {
                         for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                         {
@@ -59,7 +61,7 @@ public class CheckpointMovement : MonoBehaviour
                         }
                     }
                     yield return checkpointSequence.MainCoroutine();
-                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    if(improvementUI != null)
                     {
                         for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                         {
@@ -68,7 +70,7 @@ public class CheckpointMovement : MonoBehaviour
                         }
                     }
                     Destroy(bubble);
-                    if(checkpointSequence.GetComponentInChildren<ImprovementUI>() != null)
+                    if(improvementUI != null)
                     {
                         for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                         {

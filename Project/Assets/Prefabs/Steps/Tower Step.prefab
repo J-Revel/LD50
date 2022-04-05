@@ -908,7 +908,6 @@ GameObject:
   - component: {fileID: 3910761131801205468}
   - component: {fileID: 3910761131801205471}
   - component: {fileID: 1169543980620376095}
-  - component: {fileID: 7738625057239192867}
   m_Layer: 0
   m_Name: Tower Step
   m_TagString: Untagged
@@ -1029,46 +1028,7 @@ MonoBehaviour:
   productionPoint: {fileID: 5017486681855354046}
   destroyAnimDuration: 2
   castleConfig: {fileID: 11400000, guid: 7ac8e81f9657375488fdaf1aaa43a6b9, type: 2}
---- !u!114 &7738625057239192867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3910761131801205469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f5f04bf65eba78409b2bc07129c15df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6718262273347905052}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1169543980620376095}
-        m_TargetAssemblyTypeName: ImprovementUI, Assembly-CSharp
-        m_MethodName: LockBuildingForCombat
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  priority: -1
+  interactionCollider: {fileID: 7750749382130629641}
 --- !u!1 &4443318122691569244
 GameObject:
   m_ObjectHideFlags: 0

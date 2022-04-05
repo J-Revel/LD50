@@ -36,6 +36,8 @@ public class ImprovementUI : MonoBehaviour
     public Transform productionPoint;
     public float destroyAnimDuration = 2;
     public BuildingConfig castleConfig;
+    public Collider interactionCollider;
+    private bool locked;
     
     void Start()
     {
@@ -106,7 +108,15 @@ public class ImprovementUI : MonoBehaviour
 
     public void LockBuildingForCombat()
     {
-        hasFocus = false;
+        locked = true;
+        productionTime = 0;
+        productionPanel.SetActive(false);
+        interactionCollider.enabled = false;
+        if(hasFocus)
+        {
+            CameraFocusManager.instance.LoseFocus();
+            hasFocus = false;
+        }
         CameraFocusManager.instance.focusLostDelegate -= OnFocusLost;
         CameraFocusManager.instance.focusStolenDelegate -= OnFocusLost;
         for(int i=0; i<upgradeSubMenus.Length; i++)
@@ -123,7 +133,7 @@ public class ImprovementUI : MonoBehaviour
 
     void Update()
     {
-        if(StockDragSource.instances.ContainsKey(currentConfig.unitProduced))
+        if(StockDragSource.instances.ContainsKey(currentConfig.unitProduced) && !locked)
         {
             productionTime += Time.deltaTime;
             productionBar.anchorMax = new Vector2(productionTime / currentConfig.unitProductionDelay, 1);
