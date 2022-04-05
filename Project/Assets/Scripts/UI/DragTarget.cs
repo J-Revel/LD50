@@ -27,12 +27,14 @@ public class DragTarget : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 
     public void OnPointerEnter(PointerEventData data)
     {
-        hoverElement?.SetActive(true);
+        if(hoverElement != null)
+            hoverElement.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData data)
     {
-        hoverElement?.SetActive(false);
+        if(hoverElement != null)
+            hoverElement.SetActive(false);
     }
 
     public void OnContentTaken()
