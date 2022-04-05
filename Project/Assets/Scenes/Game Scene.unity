@@ -696,8 +696,8 @@ MonoBehaviour:
   level: {fileID: 1326408313}
   startCheckpoint: 2
   movementSpeed: 1
-  maxMovementSpeed: 2
-  increaseDuration: 60
+  maxMovementSpeed: 5
+  increaseDuration: 300
   castleConfig: {fileID: 11400000, guid: 7ac8e81f9657375488fdaf1aaa43a6b9, type: 2}
   furthestCastleSection: 0
   furthestCastleCheckpoint: 0
@@ -1570,8 +1570,8 @@ MonoBehaviour:
   level: {fileID: 1326408313}
   currentCheckpoint: 0
   movementSpeed: 1
-  maxMovementSpeed: 10
-  increaseDuration: 30
+  maxMovementSpeed: 5
+  increaseDuration: 300
 --- !u!114 &398002325
 MonoBehaviour:
   m_ObjectHideFlags: 0
