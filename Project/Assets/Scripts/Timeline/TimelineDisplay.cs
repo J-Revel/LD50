@@ -34,8 +34,8 @@ public class TimelineDisplay : MonoBehaviour
     public Vector3 playerEjectionGravity;
     public float playerEjectionRotationSpeed = 360 * 3;
 
-    Vector3 startPoint { get { return transform.position + Vector3.Scale(transform.lossyScale, Vector3.left * (sectionSize * config.timelineLength / 2)); } }
-    Vector3 endPoint { get { return transform.position + Vector3.Scale(transform.lossyScale, Vector3.right * (sectionSize * config.timelineLength / 2)); } }
+    Vector3 startPoint { get { return Vector3.left * (sectionSize * config.timelineLength / 2); } }
+    Vector3 endPoint { get { return Vector3.right * (sectionSize * config.timelineLength / 2); } }
     
     public void AddObstacle(TimelineObstacle obstacle)
     {
@@ -71,7 +71,8 @@ public class TimelineDisplay : MonoBehaviour
             {
                 if(slotPrefab != null)
                 {
-                    BubbleWidget instantiated = Instantiate(slotPrefab, characterPosition, timelineObstacleContainer.rotation, timelineObstacleContainer);
+                    BubbleWidget instantiated = Instantiate(slotPrefab, timelineObstacleContainer);
+                    instantiated.transform.localPosition = characterPosition;
                     visibleObstacles.Add(instantiated);
                     instantiated.gameObject.AddComponent<TimelineObstacleDataHolder>().data = config.obstacles[i];
                 }
@@ -79,7 +80,8 @@ public class TimelineDisplay : MonoBehaviour
             }
             else
             {
-                BubbleWidget instantiated = Instantiate(config.obstacles[i].bubblePrefab, characterPosition, timelineObstacleContainer.rotation, timelineObstacleContainer);
+                BubbleWidget instantiated = Instantiate(config.obstacles[i].bubblePrefab, timelineObstacleContainer);
+                instantiated.transform.localPosition = characterPosition;
                 visibleObstacles.Add(instantiated);
                 if(instantiated.iconRenderer != null)
                     instantiated.iconRenderer.sprite = config.obstacles[i].icon;
@@ -97,7 +99,7 @@ public class TimelineDisplay : MonoBehaviour
             
             if(visibleObstacles[i] != null)
             {
-                visibleObstacles[i].transform.position = characterPosition;
+                visibleObstacles[i].transform.localPosition = characterPosition;
             }
         }
         for(int i=visibleObstacles.Count; i<config.obstacles.Count; i++)
@@ -107,7 +109,8 @@ public class TimelineDisplay : MonoBehaviour
             {
                 if(slotPrefab != null)
                 {
-                    BubbleWidget instantiated = Instantiate(slotPrefab, characterPosition, timelineObstacleContainer.rotation, timelineObstacleContainer);
+                    BubbleWidget instantiated = Instantiate(slotPrefab, timelineObstacleContainer);
+                    instantiated.transform.localPosition = characterPosition;
                     visibleObstacles.Add(instantiated);
                     instantiated.gameObject.AddComponent<TimelineObstacleDataHolder>().data = config.obstacles[i];
                 }
@@ -115,7 +118,8 @@ public class TimelineDisplay : MonoBehaviour
             }
             else
             {
-                BubbleWidget instantiated = Instantiate(config.obstacles[i].bubblePrefab, characterPosition, timelineObstacleContainer.rotation, timelineObstacleContainer);
+                BubbleWidget instantiated = Instantiate(config.obstacles[i].bubblePrefab, timelineObstacleContainer);
+                    instantiated.transform.localPosition = characterPosition;
                 visibleObstacles.Add(instantiated);
                 if(instantiated.iconRenderer != null)
                     instantiated.iconRenderer.sprite = config.obstacles[i].icon;
@@ -169,7 +173,8 @@ public class TimelineDisplay : MonoBehaviour
     {
         yield return null; // To make sure start is played
         float position = 0;
-        BubbleWidget player = Instantiate(playerBubblePrefab, startPoint, timelineObstacleContainer.rotation, timelineObstacleContainer);
+        BubbleWidget player = Instantiate(playerBubblePrefab, timelineObstacleContainer);
+        player.transform.localPosition = startPoint;
         
         float checkpointPosition = 0;
         
@@ -180,7 +185,7 @@ public class TimelineDisplay : MonoBehaviour
             int nextObstacleIndex = GetNextObstacleIndex(position);
             position += playerMovementSpeed * Time.deltaTime;
             
-            Vector3 playerWorldPosition = Vector3.Lerp(startPoint, endPoint, position / config.timelineLength);
+            Vector3 playerLocalPosition = Vector3.Lerp(startPoint, endPoint, position / config.timelineLength);
             if(nextObstacleIndex >= 0 && !obstaclePassed && nextObstacleIndex < config.obstacles.Count && position >= config.obstacles[nextObstacleIndex].position)
             {
                 position = config.obstacles[nextObstacleIndex].position;
@@ -196,15 +201,15 @@ public class TimelineDisplay : MonoBehaviour
                         break;
                     case ObstacleType.Obstacle:
                     case ObstacleType.Unit:
-                        Vector3 obstacleStartPos = visibleObstacles[nextObstacleIndex].transform.position;
+                        Vector3 obstacleStartPos = Vector3.Lerp(startPoint, endPoint, config.obstacles[nextObstacleIndex].position / config.timelineLength);
                         for(float resolveTime = 0; resolveTime < resolveDuration; resolveTime += Time.deltaTime)
                         {
-                            visibleObstacles[nextObstacleIndex].transform.position = obstacleStartPos + resolveTime / resolveDuration * resolveShakeIntensity * (player.transform.up * Random.Range(-1f, 1f) + player.transform.right * Random.Range(-1f, 1f));
-                            player.transform.position = playerWorldPosition + resolveTime / resolveDuration * resolveShakeIntensity * (player.transform.up * Random.Range(-1f, 1f) + player.transform.right * Random.Range(-1f, 1f));
+                            visibleObstacles[nextObstacleIndex].transform.localPosition = obstacleStartPos + resolveTime / resolveDuration * resolveShakeIntensity * (player.transform.up * Random.Range(-1f, 1f) + player.transform.right * Random.Range(-1f, 1f));
+                            player.transform.localPosition = playerLocalPosition + resolveTime / resolveDuration * resolveShakeIntensity * (Vector3.up * Random.Range(-1f, 1f) + Vector3.right * Random.Range(-1f, 1f));
                             yield return null;
                         }
                         visibleObstacles[nextObstacleIndex].transform.position = obstacleStartPos;
-                        player.transform.position = playerWorldPosition;
+                        player.transform.localPosition = playerLocalPosition;
 
                         int probIndex = 0;
                         if(defeatCount.ContainsKey(nextObstacleIndex))
@@ -261,7 +266,7 @@ public class TimelineDisplay : MonoBehaviour
             else
             {
                 obstaclePassed = false;
-                player.transform.position = playerWorldPosition;
+                player.transform.localPosition = playerLocalPosition;
             }
             yield return null;
         }
