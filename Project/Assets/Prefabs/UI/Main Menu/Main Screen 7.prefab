@@ -195,7 +195,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 968, y: 627}
+  m_SizeDelta: {x: 991, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1220588490048629179
 CanvasRenderer:
@@ -356,10 +356,10 @@ RectTransform:
   m_Father: {fileID: 1220588490048629177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 192}
+  m_SizeDelta: {x: 992, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &81114235570809782
 CanvasRenderer:
@@ -391,7 +391,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: When bario reaches a building, he will need to fight all garrisonned units,
     and avoid traps without dying. It might take him a few attemps, but he will eventually
-    succedd !
+    succeed !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc7fe567ca635c443ad53465d58aa9ec, type: 2}
   m_sharedMaterial: {fileID: 2235899996938605821, guid: bc7fe567ca635c443ad53465d58aa9ec, type: 2}

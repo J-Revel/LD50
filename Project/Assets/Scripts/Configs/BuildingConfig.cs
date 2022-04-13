@@ -15,6 +15,8 @@ public class BuildingConfig : ScriptableObject
     public Sprite sprite;
     public UpgradeConfig[] upgrades;
 
+    public string description;
+
     public float unitProductionDelay;
     public string unitProduced;
     public float timelineLength;

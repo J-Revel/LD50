@@ -75,8 +75,13 @@ public class UpgradeSubMenu : MonoBehaviour
 
     public void ClosePanel()
     {
-        StartCoroutine(HideSlotsAnimation());
-    } 
+        StartCoroutine(CloseSlotsAnimation());
+    }
+
+    public void OnBuildFinished()
+    {
+        StartCoroutine(BuildFinishedSlotsAnimation());
+    }
 
     public IEnumerator ShowSlotsAnimation()
     {
@@ -90,12 +95,27 @@ public class UpgradeSubMenu : MonoBehaviour
             yield return null;
         }
     }
-    public IEnumerator HideSlotsAnimation()
+    
+    public IEnumerator BuildFinishedSlotsAnimation()
     {
         for(int i=0; i<dragTargets.Length; i++)
         {
-            dragTargets[i].DropContent();
+            dragTargets[i].ConsumeContent();
         }
+        yield return HideSlotsAnimation();
+    }
+    public IEnumerator CloseSlotsAnimation()
+    {
+        for(int i=0; i<dragTargets.Length; i++)
+        {
+            dragTargets[i].ConsumeContent();
+        }
+        yield return HideSlotsAnimation();
+    }
+
+    private IEnumerator HideSlotsAnimation()
+    {
+        
         for(float animTime=0; animTime<animDuration; animTime+=Time.deltaTime)
         {
             float animRatio = 1 - (1 - animTime / animDuration) * (1 -  animTime / animDuration);

@@ -112,6 +112,7 @@ public class ImprovementUI : MonoBehaviour
         productionTime = 0;
         productionPanel.SetActive(false);
         interactionCollider.enabled = false;
+        currentUpgradeIndex = -1;
         if(hasFocus)
         {
             CameraFocusManager.instance.LoseFocus();
@@ -163,7 +164,7 @@ public class ImprovementUI : MonoBehaviour
                 {
                     GetComponentInParent<LevelTile>().castleBuiltDelegate?.Invoke(checkpointIndex);
                 }
-                upgradeSubMenus[currentUpgradeIndex].ClosePanel();
+                upgradeSubMenus[currentUpgradeIndex].OnBuildFinished();
                 productionPanel.SetActive(StockDragSource.instances.ContainsKey(currentConfig.unitProduced));
                 productionTime = 0;
                 if(hasFocus)
