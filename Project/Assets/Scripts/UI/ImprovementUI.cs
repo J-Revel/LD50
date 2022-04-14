@@ -219,9 +219,17 @@ public class ImprovementUI : MonoBehaviour
         }
         if(currentConfig.ruinSprite != null)
         {
+            activeSprite.transform.localScale = Vector3.zero;
             activeSprite.sprite = currentConfig.ruinSprite;
             activeSprite.transform.position = startImprovementSpritePos;
+            float ruinAppearDuration = 0.5f;
+            for(float time = 0; time < ruinAppearDuration; time+=Time.deltaTime)
+            {
+                activeSprite.transform.localScale = (time / ruinAppearDuration) * Vector3.one;
+                yield return null;
+            }
             buildingFX.SetActive(false);
+            
         }
         if(currentConfig == castleConfig)
         {
