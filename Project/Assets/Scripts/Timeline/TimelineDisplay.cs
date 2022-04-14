@@ -204,11 +204,12 @@ public class TimelineDisplay : MonoBehaviour
                         Vector3 obstacleStartPos = Vector3.Lerp(startPoint, endPoint, config.obstacles[nextObstacleIndex].position / config.timelineLength);
                         for(float resolveTime = 0; resolveTime < resolveDuration; resolveTime += Time.deltaTime)
                         {
+                            playerLocalPosition = Vector3.Lerp(startPoint, endPoint, position / config.timelineLength);
                             visibleObstacles[nextObstacleIndex].transform.localPosition = obstacleStartPos + resolveTime / resolveDuration * resolveShakeIntensity * (player.transform.up * Random.Range(-1f, 1f) + player.transform.right * Random.Range(-1f, 1f));
                             player.transform.localPosition = playerLocalPosition + resolveTime / resolveDuration * resolveShakeIntensity * (Vector3.up * Random.Range(-1f, 1f) + Vector3.right * Random.Range(-1f, 1f));
                             yield return null;
                         }
-                        visibleObstacles[nextObstacleIndex].transform.position = obstacleStartPos;
+                        visibleObstacles[nextObstacleIndex].transform.localPosition = obstacleStartPos;
                         player.transform.localPosition = playerLocalPosition;
 
                         int probIndex = 0;
@@ -223,6 +224,7 @@ public class TimelineDisplay : MonoBehaviour
                             visibleObstacles[nextObstacleIndex].gameObject.SetActive(false);
                             
                             AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, visibleObstacles[nextObstacleIndex].explosionFxPosition.position + bubbleExplosionPrefab.transform.position, visibleObstacles[nextObstacleIndex].transform.rotation);
+                            explosionFx.transform.localPosition = visibleObstacles[nextObstacleIndex].transform.localPosition;
                             while(!explosionFx.isAnimationFinished)
                                 yield return null;
                             Destroy(explosionFx.gameObject);
@@ -234,9 +236,10 @@ public class TimelineDisplay : MonoBehaviour
                             else defeatCount[nextObstacleIndex]++;
 
                             AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, player.explosionFxPosition.position + bubbleExplosionPrefab.transform.position, bubbleExplosionPrefab.transform.rotation);
+                            explosionFx.transform.localPosition = player.transform.localPosition + player.explosionFxPosition.localPosition;
                             Vector3 velocity = playerEjectionVelocity;
                             
-                            Vector3 initialPos = player.animationCenter.position;
+                            Vector3 initialPos = player.animationCenter.localPosition;
                             Quaternion initialRot = player.animationCenter.localRotation;
                             for(float time = 0; time < 2; time += Time.deltaTime)
                             {
@@ -250,7 +253,7 @@ public class TimelineDisplay : MonoBehaviour
                                 }
                                 yield return null;
                             }
-                            player.animationCenter.position = initialPos;
+                            player.animationCenter.localPosition = initialPos;
                             player.animationCenter.localRotation = initialRot;
                             position = checkpointPosition;
                             foreach(int obstacleIndex in GetObstaclesAfter(checkpointPosition))

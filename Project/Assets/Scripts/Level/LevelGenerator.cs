@@ -39,9 +39,20 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    private Vector3 pathEndPosition { get { 
+        if(generatedTiles.Count == 0)
+            return transform.position;
+        Transform lastTilePath = generatedTiles[generatedTiles.Count - 1].path;
+        return lastTilePath.GetChild(lastTilePath.childCount - 1).position;
+    }}
+
     public void GenerateTile(LevelTile tilePrefab)
     {
-        LevelTile tile = Instantiate(tilePrefab, transform.position + Vector3.right * tileSpacing * tileCount, transform.rotation);
+        Transform tilePrefabPath = tilePrefab.path;
+        Vector3 startPosition = Vector3.zero;
+        if(generatedTiles.Count != 0)
+            startPosition = pathEndPosition - tilePrefabPath.GetChild(0).localPosition;
+        LevelTile tile = Instantiate(tilePrefab, transform.position + startPosition, transform.rotation);
         int tileIndex = tileCount;
         tile.castleBuiltDelegate += (int checkpointIndex) => {
             castleBuiltDelegate?.Invoke(tileIndex, checkpointIndex);
@@ -59,7 +70,9 @@ public class LevelGenerator : MonoBehaviour
 
     public void GenerateNextTile()
     {
-        LevelTile tile = Instantiate(tilePrefabs[Random.Range(0, tilePrefabs.Length)], transform.position + Vector3.right * tileSpacing * tileCount, transform.rotation);
+        LevelTile tilePrefab = tilePrefabs[Random.Range(0, tilePrefabs.Length)];
+        Transform tilePrefabPath = tilePrefab.path;
+        LevelTile tile = Instantiate(tilePrefab, transform.position + pathEndPosition - tilePrefabPath.GetChild(0).localPosition, transform.rotation);
         int tileIndex = tileCount;
         tile.castleBuiltDelegate += (int checkpointIndex) => {
             castleBuiltDelegate?.Invoke(tileIndex, checkpointIndex);

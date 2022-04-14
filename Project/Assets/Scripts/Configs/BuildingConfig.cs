@@ -13,6 +13,7 @@ public class UpgradeConfig
 public class BuildingConfig : ScriptableObject
 {
     public Sprite sprite;
+    public Sprite ruinSprite;
     public UpgradeConfig[] upgrades;
 
     public string description;

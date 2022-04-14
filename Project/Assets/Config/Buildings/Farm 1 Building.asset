@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Farm 1 Building
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: cf54458982d57544fb7da2f91ecb407d, type: 3}
+  ruinSprite: {fileID: 21300000, guid: c7b008ebb3759574aa9776d27b5fb8b5, type: 3}
   upgrades:
   - result: {fileID: 11400000, guid: 6d6a91e599b295c4397709ddb5fcb25f, type: 2}
-    buildingTime: 20
+    buildingTime: 50
   - result: {fileID: 11400000, guid: 94b978a38c3f48440a0eb325c84ea7cf, type: 2}
-    buildingTime: 20
+    buildingTime: 50
+  description: 
   unitProductionDelay: 10
   unitProduced: Goomba
   timelineLength: 1

@@ -45,37 +45,37 @@ public class CheckpointMovement : MonoBehaviour
                     if(improvementUI != null)
                     {
                         improvementUI.LockBuildingForCombat();
-                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                        if(improvementUI.currentConfig.timelineLength > 0)
                         {
-                            transform.localScale = Vector3.one * (1 - t/fadeDuration);
-                            yield return null;
-                        }
-                    }
-                    GameObject bubble = Instantiate(bubblePrefab, nextCheckpoint.transform);
-                    if(improvementUI != null)
-                    {
-                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
-                        {
-                            bubble.transform.localScale = bubblePrefab.transform.localScale * (t/fadeDuration);
-                            yield return null;
-                        }
-                    }
-                    yield return checkpointSequence.MainCoroutine();
-                    if(improvementUI != null)
-                    {
-                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
-                        {
-                            bubble.transform.localScale = bubblePrefab.transform.localScale * (1 - t/fadeDuration);
-                            yield return null;
-                        }
-                    }
-                    Destroy(bubble);
-                    if(improvementUI != null)
-                    {
-                        for(float t=0; t<fadeDuration; t+=Time.deltaTime)
-                        {
-                            transform.localScale = Vector3.one * (t/fadeDuration);
-                            yield return null;
+                            for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                            {
+                                transform.localScale = Vector3.one * (1 - t/fadeDuration);
+                                yield return null;
+                            }
+                            GameObject bubble = Instantiate(bubblePrefab, nextCheckpoint.transform);
+                            if(improvementUI != null)
+                            {
+                                for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                                {
+                                    bubble.transform.localScale = bubblePrefab.transform.localScale * (t/fadeDuration);
+                                    yield return null;
+                                }
+                            }
+                            yield return checkpointSequence.MainCoroutine();
+                            if(improvementUI != null)
+                            {
+                                for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                                {
+                                    bubble.transform.localScale = bubblePrefab.transform.localScale * (1 - t/fadeDuration);
+                                    yield return null;
+                                }
+                            }
+                            Destroy(bubble);
+                            for(float t=0; t<fadeDuration; t+=Time.deltaTime)
+                            {
+                                transform.localScale = Vector3.one * (t/fadeDuration);
+                                yield return null;
+                            }
                         }
                     }
                 }
