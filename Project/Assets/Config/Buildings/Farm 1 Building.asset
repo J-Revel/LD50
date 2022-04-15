@@ -22,4 +22,4 @@ MonoBehaviour:
   description: 
   unitProductionDelay: 10
   unitProduced: Goomba
-  timelineLength: 1
+  timelineLength: 0

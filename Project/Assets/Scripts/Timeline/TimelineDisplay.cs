@@ -183,7 +183,7 @@ public class TimelineDisplay : MonoBehaviour
         while(position < config.timelineLength)
         {
             int nextObstacleIndex = GetNextObstacleIndex(position);
-            position += playerMovementSpeed * Time.deltaTime;
+            position += playerMovementSpeed * DifficultyService.instance.timelineSpeed * Time.deltaTime;
             
             Vector3 playerLocalPosition = Vector3.Lerp(startPoint, endPoint, position / config.timelineLength);
             if(nextObstacleIndex >= 0 && !obstaclePassed && nextObstacleIndex < config.obstacles.Count && position >= config.obstacles[nextObstacleIndex].position)
@@ -202,11 +202,12 @@ public class TimelineDisplay : MonoBehaviour
                     case ObstacleType.Obstacle:
                     case ObstacleType.Unit:
                         Vector3 obstacleStartPos = Vector3.Lerp(startPoint, endPoint, config.obstacles[nextObstacleIndex].position / config.timelineLength);
-                        for(float resolveTime = 0; resolveTime < resolveDuration; resolveTime += Time.deltaTime)
+                        float actualResolveDuration = resolveDuration / DifficultyService.instance.timelineSpeed;
+                        for(float resolveTime = 0; resolveTime < actualResolveDuration; resolveTime += Time.deltaTime)
                         {
                             playerLocalPosition = Vector3.Lerp(startPoint, endPoint, position / config.timelineLength);
-                            visibleObstacles[nextObstacleIndex].transform.localPosition = obstacleStartPos + resolveTime / resolveDuration * resolveShakeIntensity * (player.transform.up * Random.Range(-1f, 1f) + player.transform.right * Random.Range(-1f, 1f));
-                            player.transform.localPosition = playerLocalPosition + resolveTime / resolveDuration * resolveShakeIntensity * (Vector3.up * Random.Range(-1f, 1f) + Vector3.right * Random.Range(-1f, 1f));
+                            visibleObstacles[nextObstacleIndex].transform.localPosition = obstacleStartPos + resolveTime / actualResolveDuration * resolveShakeIntensity * (player.transform.up * Random.Range(-1f, 1f) + player.transform.right * Random.Range(-1f, 1f));
+                            player.transform.localPosition = playerLocalPosition + resolveTime / actualResolveDuration * resolveShakeIntensity * (Vector3.up * Random.Range(-1f, 1f) + Vector3.right * Random.Range(-1f, 1f));
                             yield return null;
                         }
                         visibleObstacles[nextObstacleIndex].transform.localPosition = obstacleStartPos;
@@ -218,7 +219,7 @@ public class TimelineDisplay : MonoBehaviour
                         float[] crossProbabilities = config.obstacles[nextObstacleIndex].crossProbabilities;
                         float successRatio = crossProbabilities[Mathf.Min(probIndex, crossProbabilities.Length-1)];
 
-                        if(Random.Range(0f, 1f) < successRatio && !forceDeath)
+                        if(Random.Range(0f, 1f) < successRatio / DifficultyService.instance.successProbabilityFactor && !forceDeath)
                         {
                             obstaclePassed = true;
                             visibleObstacles[nextObstacleIndex].gameObject.SetActive(false);

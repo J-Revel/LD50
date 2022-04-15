@@ -106,7 +106,7 @@ public class TimelinePlayerRoutine : MonoBehaviour
         timeline.transform.SetParent(TimelineContainer.instance.transform);
         for(float time = 0; time < timelineAppearDuration; time += Time.deltaTime)
         {
-            timeline.transform.localPosition = Vector3.Lerp(timeline.transform.parent.InverseTransformPoint(transform.position), Vector3.zero, time / timelineAppearDuration);;
+            timeline.transform.localPosition = Vector3.Lerp(timeline.transform.parent.InverseTransformPoint(transform.position), Vector3.zero, time / timelineAppearDuration);
             timeline.transform.localScale = Vector3.one * Mathf.Max(0.01f, time / timelineAppearDuration);
             yield return null;
         }

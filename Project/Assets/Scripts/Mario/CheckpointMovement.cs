@@ -7,6 +7,7 @@ public class CheckpointMovement : MonoBehaviour
     public LevelGenerator level;
     private AnimatedSprite animatedSprite;
     public int currentCheckpoint;
+    public DifficultyConfig difficulty;
     public float movementSpeed = 1;
     public float maxMovementSpeed = 2;
     public float increaseDuration = 60;
@@ -87,7 +88,7 @@ public class CheckpointMovement : MonoBehaviour
 
     private IEnumerator StepMovementCoroutine(Vector3 currentCheckpointPosition, Vector3 targetCheckpointPosition)
     {
-        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / Mathf.Lerp(movementSpeed, maxMovementSpeed, time / increaseDuration);
+        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / DifficultyService.instance.movementSpeed;
         SpriteRenderer spriteRenderer = animatedSprite.spriteRenderer;
         for(float time = 0; time < duration; time += Time.deltaTime)
         {

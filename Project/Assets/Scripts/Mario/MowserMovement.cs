@@ -18,6 +18,7 @@ public class MowserMovement : MonoBehaviour
     public Transform gameOverPrefab;
     public static MowserMovement instance;
     public GameObject bubblePrefab;
+    public DifficultyConfig difficulty;
 
     private void Awake()
     {
@@ -86,7 +87,7 @@ public class MowserMovement : MonoBehaviour
 
     private IEnumerator StepMovementCoroutine(Vector3 currentCheckpointPosition, Vector3 targetCheckpointPosition)
     {
-        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / Mathf.Lerp(movementSpeed, maxMovementSpeed, time / increaseDuration);
+        float duration = Vector3.Distance(currentCheckpointPosition, targetCheckpointPosition) / DifficultyService.instance.movementSpeed;
         SpriteRenderer spriteRenderer = animatedSprite.spriteRenderer;
         for(float time = 0; time < duration; time += Time.deltaTime)
         {
