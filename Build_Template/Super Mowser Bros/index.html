@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Super Mowser World</title>
+	<style>
+		html,
+		body {
+			background: #000;
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+			padding: 0;
+			margin: 0;
+		}
+
+		div#gameContainer {
+			background: transparent !important;
+			position: absolute;
+		}
+
+		div#gameContainer canvas {
+			position: absolute;
+		}
+
+		div#gameContainer canvas[data-pixel-art="true"] {
+			position: absolute;
+			image-rendering: optimizeSpeed;
+			image-rendering: -webkit-crisp-edges;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -o-crisp-edges;
+			image-rendering: crisp-edges;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: optimize-contrast;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;
+		}
+	div#versionSelector {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.versionButton {
+		width: 500px;
+		height: 100px;
+		font-size: 30px;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	</style>
+</head>
+
+<body>
+	<div id="versionSelector">
+		<button class="versionButton" style="left: 33%" id="jamButton" onclick="launchGame('Jam/Build')">
+			Jam Version
+			<p style="font-size: 15px">(rate this version)</p>
+		</button>
+		<button class="versionButton" style="left: 66%" onclick="launchGame('Postjam/Web')">
+			PostJam Version
+			<p style="font-size: 15px">(with balance changes, we need feedback on this !)</p>
+		</button>
+	</div>
+	<div id="gameContainer">
+		<canvas id="unity-canvas" data-pixel-art=""></canvas>
+		<script src="Build/Web.loader.js"></script>
+		<script>
+			function launchGame(folder) {
+				document.querySelector("#versionSelector").style.display = "none";
+				var canvas = document.querySelector("#unity-canvas");
+				var config = {
+					dataUrl: folder + ".data.gz",
+					frameworkUrl: folder + ".framework.js.gz",
+					codeUrl: folder + ".wasm.gz",
+					streamingAssetsUrl: "StreamingAssets",
+					companyName: "Guilloteam",
+					productName: "Super Mowser World",
+					productVersion: "1.1",
+				};
+				var scaleToFit;
+				try {
+					scaleToFit = !!JSON.parse("");
+				} catch (e) {
+					scaleToFit = true;
+				}
+				function progressHandler(progress) {
+					var percent = progress * 100 + '%';
+					canvas.style.background = 'linear-gradient(to right, white, white ' + percent + ', transparent ' + percent + ', transparent) no-repeat center';
+					canvas.style.backgroundSize = '100% 1rem';
+				}
+				function onResize() {
+					var container = canvas.parentElement;
+					var w;
+					var h;
+
+					if (scaleToFit) {
+						w = window.innerWidth;
+						h = window.innerHeight;
+
+						var r = 600 / 960;
+
+						if (w * r > window.innerHeight) {
+							w = Math.min(w, Math.ceil(h / r));
+						}
+						h = Math.floor(w * r);
+					} else {
+						w = 960;
+						h = 600;
+					}
+
+					container.style.width = canvas.style.width = w + "px";
+					container.style.height = canvas.style.height = h + "px";
+					container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
+					container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
+				}
+				createUnityInstance(canvas, config, progressHandler).then(function (instance) {
+					canvas = instance.Module.canvas;
+					onResize();
+				});
+				window.addEventListener('resize', onResize);
+				onResize();
+			}
+			
+		</script>
+	</div>
+</body>
+
+</html>
