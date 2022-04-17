@@ -46,13 +46,14 @@ public class CheckpointMovement : MonoBehaviour
                     if(improvementUI != null)
                     {
                         improvementUI.LockBuildingForCombat();
-                        if(improvementUI.currentConfig.timelineLength > 0)
+                        if(improvementUI.currentConfig.sprite != null)
                         {
                             for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                             {
                                 transform.localScale = Vector3.one * (1 - t/fadeDuration);
                                 yield return null;
                             }
+                            
                             GameObject bubble = Instantiate(bubblePrefab, nextCheckpoint.transform);
                             if(improvementUI != null)
                             {

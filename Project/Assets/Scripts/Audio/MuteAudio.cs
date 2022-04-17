@@ -1,18 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class MuteAudio : MonoBehaviour
 {
-    AudioSource audioSource;
+    public AudioMixer mixer;
+    public TMPro.TextMeshProUGUI text;
+    public static bool mute = false;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        mixer.SetFloat("Master Volume", mute ? -80 : -10);
+        text.text = "Music: " + (mute ? "Off" : "On");
     }
 
-    void Update()
+    public void ToggleAudio()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-            audioSource.mute = !audioSource.mute;
+        mute = !mute;
+        text.text = "Music: " + (mute ? "Off" : "On");
+        mixer.SetFloat("Master Volume", mute ? -80 : -10);
     }
 }

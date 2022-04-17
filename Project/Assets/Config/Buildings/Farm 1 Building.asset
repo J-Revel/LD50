@@ -20,6 +20,6 @@ MonoBehaviour:
   - result: {fileID: 11400000, guid: 94b978a38c3f48440a0eb325c84ea7cf, type: 2}
     buildingTime: 50
   description: 
-  unitProductionDelay: 10
+  unitProductionDelay: 12
   unitProduced: Goomba
   timelineLength: 0

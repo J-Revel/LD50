@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScreenResizer : MonoBehaviour
 {
     private RectTransform rectTransform;
+    
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();

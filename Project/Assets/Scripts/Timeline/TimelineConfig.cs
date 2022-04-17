@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TimelineConfig : ScriptableObject
 {
+    public Transform buildingIconPrefab;
     public List<TimelineObstacle> obstacles = new List<TimelineObstacle>();
     public float timelineLength = 1;
     public float resolveDuration = 1;

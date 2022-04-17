@@ -21,6 +21,7 @@ public class TimelineDisplay : MonoBehaviour
 
     public BubbleWidget playerBubblePrefab;
     public BubbleWidget slotPrefab;
+    public BubbleWidget princessBubblePrefab;
     public Transform timelineObstacleContainer;
     public Transform timelineBackground;
     public float sectionSize = 4;
@@ -33,6 +34,7 @@ public class TimelineDisplay : MonoBehaviour
     public Vector3 playerEjectionVelocity;
     public Vector3 playerEjectionGravity;
     public float playerEjectionRotationSpeed = 360 * 3;
+    private BubbleWidget princessBubble;
 
     Vector3 startPoint { get { return Vector3.left * (sectionSize * config.timelineLength / 2); } }
     Vector3 endPoint { get { return Vector3.right * (sectionSize * config.timelineLength / 2); } }
@@ -51,6 +53,7 @@ public class TimelineDisplay : MonoBehaviour
             if(dataHolder != null)
             {
                 Init();
+                previousTimelineLength = config.timelineLength;
             }
         }
         else if(config.timelineLength != previousTimelineLength)
@@ -58,11 +61,19 @@ public class TimelineDisplay : MonoBehaviour
             UpdateDisplay();
         }
         previousTimelineLength = config.timelineLength;
+
+        bool hasPrincess = (dataHolder.buildingUI.sectionIndex == MowserMovement.instance.furthestCastleSection && dataHolder.buildingUI.checkpointIndex == MowserMovement.instance.furthestCastleCheckpoint);
+        princessBubble.gameObject.SetActive(hasPrincess);
     }
 
     private void Init()
     {
         timelineBackground.localScale = new Vector3(sectionSize * config.timelineLength, timelineBackground.localScale.y, timelineBackground.localScale.z);
+        if(dataHolder.timelineData.buildingIconPrefab != null)
+        {
+            Transform buildingIcon = Instantiate(dataHolder.timelineData.buildingIconPrefab, timelineObstacleContainer);
+            buildingIcon.transform.localPosition = startPoint;
+        }   
         
         for(int i=0; i<config.obstacles.Count; i++)
         {
@@ -88,6 +99,8 @@ public class TimelineDisplay : MonoBehaviour
                 instantiated.gameObject.AddComponent<TimelineObstacleDataHolder>().data = config.obstacles[i];
             }
         }
+        princessBubble = Instantiate(princessBubblePrefab, timelineObstacleContainer);
+        princessBubble.transform.localPosition = endPoint;
     }
 
     private void UpdateDisplay()
@@ -126,6 +139,7 @@ public class TimelineDisplay : MonoBehaviour
                 instantiated.gameObject.AddComponent<TimelineObstacleDataHolder>().data = config.obstacles[i];
             }
         }
+        princessBubble.transform.localPosition = endPoint;
     }
 
     private void SortObstacles()
@@ -224,8 +238,8 @@ public class TimelineDisplay : MonoBehaviour
                             obstaclePassed = true;
                             visibleObstacles[nextObstacleIndex].gameObject.SetActive(false);
                             
-                            AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, visibleObstacles[nextObstacleIndex].explosionFxPosition.position + bubbleExplosionPrefab.transform.position, visibleObstacles[nextObstacleIndex].transform.rotation);
-                            explosionFx.transform.localPosition = visibleObstacles[nextObstacleIndex].transform.localPosition;
+                            AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, timelineObstacleContainer);
+                            explosionFx.transform.position = visibleObstacles[nextObstacleIndex].explosionFxPosition.position;
                             while(!explosionFx.isAnimationFinished)
                                 yield return null;
                             Destroy(explosionFx.gameObject);
@@ -236,8 +250,8 @@ public class TimelineDisplay : MonoBehaviour
                                 defeatCount[nextObstacleIndex] = 1;
                             else defeatCount[nextObstacleIndex]++;
 
-                            AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, player.explosionFxPosition.position + bubbleExplosionPrefab.transform.position, bubbleExplosionPrefab.transform.rotation);
-                            explosionFx.transform.localPosition = player.transform.localPosition + player.explosionFxPosition.localPosition;
+                            AnimatedSprite explosionFx = Instantiate(bubbleExplosionPrefab, timelineObstacleContainer);
+                            explosionFx.transform.position = player.explosionFxPosition.position;
                             Vector3 velocity = playerEjectionVelocity;
                             
                             Vector3 initialPos = player.animationCenter.localPosition;

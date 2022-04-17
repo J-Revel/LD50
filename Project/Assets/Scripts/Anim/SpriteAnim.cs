@@ -28,7 +28,10 @@ public class SpriteAnimConfig
 
     public Sprite GetSpriteFromIndex(int index)
     {
-        return sprites[loop ? index % sprites.Length : Mathf.Min(index, sprites.Length - 1)];
+        if(!loop)
+            Debug.Log(index + " / " + (sprites.Length - 1));
+        int spriteIndex = loop ? index % sprites.Length : Mathf.Min(index, sprites.Length - 1);
+        return sprites[spriteIndex];
     }
 
     public Vector2 GetSpritePoint(int pointIndex, int spriteIndex)

@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &181067470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8475752785872327980, guid: 0258ce8dedf1766489c729beef89a793, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 199.99998
       objectReference: {fileID: 0}
     - target: {fileID: 8475752785872327980, guid: 0258ce8dedf1766489c729beef89a793, type: 3}
       propertyPath: m_SizeDelta.y
@@ -740,6 +740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23b5d8a553812e43b46acd90f266662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 0}
+  text: {fileID: 0}
 --- !u!82 &821536897
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1037,7 +1039,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1503,7 +1505,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 8.5298967e-35}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

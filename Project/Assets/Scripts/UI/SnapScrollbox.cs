@@ -91,6 +91,7 @@ public class SnapScrollbox : MonoBehaviour, IEndDragHandler, IDragHandler
             scrollRect.normalizedPosition = new Vector2(PositionToScrollValue(childCenterPos), 0);
             targetValue = PositionToScrollValue(childCenterPos);
             mustTeleport = false;
+            UpdateButtonsVisibility();
         }
         else if(scrollToTarget)
         {

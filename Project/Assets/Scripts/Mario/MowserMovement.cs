@@ -53,6 +53,8 @@ public class MowserMovement : MonoBehaviour
                 ImprovementUI improvementUI = nextCheckpoint.GetComponentInChildren<ImprovementUI>();
                 if(improvementUI != null && improvementUI.currentConfig == castleConfig && (sectionIndex > furthestCastleSection || (sectionIndex == furthestCastleSection && i >= furthestCastleCheckpoint)))
                 {
+                    furthestCastleCheckpoint = improvementUI.checkpointIndex;
+                    furthestCastleSection = improvementUI.sectionIndex;
                     float fadeDuration = 0.5f;
                     for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                     {
@@ -110,7 +112,7 @@ public class MowserMovement : MonoBehaviour
 
     public void OnCastleDestroyed(int sectionIndex, int checkpointIndex)
     {
-        if(sectionIndex > furthestCastleSection || (sectionIndex == furthestCastleSection && checkpointIndex > furthestCastleCheckpoint))
+        if(sectionIndex > furthestCastleSection || (sectionIndex == furthestCastleSection && checkpointIndex >= furthestCastleCheckpoint))
         {
             Debug.Log("Last Castled Destroyed");
             Instantiate(gameOverPrefab);

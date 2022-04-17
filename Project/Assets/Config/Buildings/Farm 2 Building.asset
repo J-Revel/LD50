@@ -16,6 +16,6 @@ MonoBehaviour:
   ruinSprite: {fileID: 21300000, guid: c7b008ebb3759574aa9776d27b5fb8b5, type: 3}
   upgrades: []
   description: 
-  unitProductionDelay: 15
+  unitProductionDelay: 20
   unitProduced: Pikpik
   timelineLength: 0

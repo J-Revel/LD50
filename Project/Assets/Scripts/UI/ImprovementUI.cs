@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ImprovementUI : MonoBehaviour
 {
     public int checkpointIndex;
+    public int sectionIndex;
     public BuildingConfig currentConfig;
     public BuildingConfig pendingBuildingConfig;
     // public Button[] panelButtons;
@@ -209,10 +210,10 @@ public class ImprovementUI : MonoBehaviour
         {
             yield break;
         }
-        for(float time=0; time<destroyAnimDuration; time += Time.deltaTime)
+        for(float time=0; time<destroyAnimDuration / DifficultyService.instance.timelineSpeed; time += Time.deltaTime)
         {
             Vector3 offset = Vector3.zero;
-            float animRatio = time / destroyAnimDuration;
+            float animRatio = time / destroyAnimDuration * DifficultyService.instance.timelineSpeed;
             offset = shakeOffset * (Random.Range(-1, 1) * transform.right + Random.Range(-1, 1) * transform.up);
             activeSprite.transform.position = startImprovementSpritePos + undergroundOffset * animRatio * -improvementSprite.transform.up + offset;
             yield return null;

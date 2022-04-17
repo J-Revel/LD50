@@ -12,6 +12,7 @@ public class UpgradeConfig
 [CreateAssetMenu()]
 public class BuildingConfig : ScriptableObject
 {
+    public Transform buildingIconPrefab;
     public Sprite sprite;
     public Sprite ruinSprite;
     public UpgradeConfig[] upgrades;

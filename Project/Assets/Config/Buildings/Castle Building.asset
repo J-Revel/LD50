@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f051f791399546345ac238ea9c5b7520, type: 3}
   m_Name: Castle Building
   m_EditorClassIdentifier: 
+  buildingIconPrefab: {fileID: 4145454773488213256, guid: 1823b364aa878b94ab17c2f05ec91b67, type: 3}
   sprite: {fileID: 21300000, guid: bc3fd18ca9012f34e8a9837e34cb4173, type: 3}
   ruinSprite: {fileID: 21300000, guid: bef82acc70b8db74ea2e0773b11f05a8, type: 3}
   upgrades: []
   description: 
   unitProductionDelay: 0
   unitProduced: None
-  timelineLength: 3
+  timelineLength: 2

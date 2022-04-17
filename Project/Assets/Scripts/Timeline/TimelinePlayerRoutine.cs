@@ -18,13 +18,11 @@ public class TimelinePlayerRoutine : MonoBehaviour
     void Start()
     {
         improvementUI = GetComponent<ImprovementUI>();
-        int timelineLength = 1;
-        if(improvementUI.currentConfig != null)
-            timelineLength = (int)improvementUI.currentConfig.timelineLength;
-        GenerateRandomTimeline(timelineLength);
+        GenerateRandomTimeline(improvementUI);
         GetComponentInParent<RoutineSequence>().RegisterRoutine(TimelinePlayerCoroutine(), 0);
         dataHolder = gameObject.AddComponent<TimelineDataHolder>();
         dataHolder.timelineData = config;
+        dataHolder.buildingUI = improvementUI;
     }
 
     public void ChangeTimelineLength(int sectionCount)
@@ -62,12 +60,17 @@ public class TimelinePlayerRoutine : MonoBehaviour
 
     }
 
-    public void GenerateRandomTimeline(int sectionCount)
+    public void GenerateRandomTimeline(ImprovementUI improvementUI)
     {
+        
+        int timelineLength = 1;
+        if(improvementUI.currentConfig != null)
+            timelineLength = (int)improvementUI.currentConfig.timelineLength;
         config = ScriptableObject.CreateInstance<TimelineConfig>();
 
-        config.timelineLength = sectionCount;
-        for(int section = 0; section < sectionCount; section++)
+        config.timelineLength = timelineLength;
+        config.buildingIconPrefab = improvementUI.currentConfig.buildingIconPrefab;
+        for(int section = 0; section < timelineLength; section++)
         {
             if(section > 0)
             {
@@ -101,7 +104,9 @@ public class TimelinePlayerRoutine : MonoBehaviour
     public IEnumerator TimelinePlayerCoroutine()
     {
         TimelineDisplay timeline = Instantiate(timelinePrefab, transform.position, TimelineContainer.instance.transform.rotation);
-        timeline.gameObject.AddComponent<TimelineDataHolder>().timelineData = config;
+        TimelineDataHolder dataHolder = timeline.gameObject.AddComponent<TimelineDataHolder>();
+        dataHolder.timelineData = config;
+        dataHolder.buildingUI = improvementUI;
 
         timeline.transform.SetParent(TimelineContainer.instance.transform);
         for(float time = 0; time < timelineAppearDuration; time += Time.deltaTime)
@@ -110,8 +115,6 @@ public class TimelinePlayerRoutine : MonoBehaviour
             timeline.transform.localScale = Vector3.one * Mathf.Max(0.01f, time / timelineAppearDuration);
             yield return null;
         }
-        TimelineDataHolder dataHolder = timeline.gameObject.AddComponent<TimelineDataHolder>();
-        dataHolder.timelineData = config;
         yield return timeline.PlayTimelineCoroutine();
         for(float time = 0; time < timelineAppearDuration; time += Time.deltaTime)
         {

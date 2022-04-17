@@ -5,4 +5,5 @@ using UnityEngine;
 public class TimelineDataHolder : MonoBehaviour
 {
     public TimelineConfig timelineData;
+    public ImprovementUI buildingUI;
 }

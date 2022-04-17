@@ -40,5 +40,5 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 32d9ae7812ad85b4196cdc4843494214, type: 3}
       actionPoints: []
       framePerSecond: 24
-      loop: 1
+      loop: 0
   actionPointNames: []

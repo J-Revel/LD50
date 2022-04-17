@@ -51,6 +51,8 @@ MonoBehaviour:
   playerMovementSpeed: 0.2
   playerRespawnDelay: 2
   playerBubblePrefab: {fileID: 931619882888486176, guid: c288ce3161c00894881d07a87ec92dc3, type: 3}
+  slotPrefab: {fileID: 0}
+  princessBubblePrefab: {fileID: 5855955817292633456, guid: 209ee013591c18b4393667a95089ca87, type: 3}
   timelineObstacleContainer: {fileID: 5958879818587249465}
   timelineBackground: {fileID: 5958879819038451792}
   sectionSize: 2
