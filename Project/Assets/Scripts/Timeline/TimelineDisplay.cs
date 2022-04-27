@@ -29,7 +29,7 @@ public class TimelineDisplay : MonoBehaviour
 
     public AnimatedSprite bubbleExplosionPrefab;
 
-    public TimelineConfig config { get { return dataHolder.timelineData; } }
+    public TimelineConfig config { get { return dataHolder != null ? dataHolder.timelineData : null; } }
 
     public Vector3 playerEjectionVelocity;
     public Vector3 playerEjectionGravity;
@@ -60,7 +60,9 @@ public class TimelineDisplay : MonoBehaviour
         {
             UpdateDisplay();
         }
-        previousTimelineLength = config.timelineLength;
+        previousTimelineLength = 0;
+        if(config != null)
+            previousTimelineLength = config.timelineLength;
 
         bool hasPrincess = (dataHolder.buildingUI.sectionIndex == MowserMovement.instance.furthestCastleSection && dataHolder.buildingUI.checkpointIndex == MowserMovement.instance.furthestCastleCheckpoint);
         princessBubble.gameObject.SetActive(hasPrincess);

@@ -15,6 +15,7 @@ public class BuildingConfig : ScriptableObject
     public Transform buildingIconPrefab;
     public Sprite sprite;
     public Sprite ruinSprite;
+    public BuildingConfig ruinBuilding;
     public UpgradeConfig[] upgrades;
 
     public string description;

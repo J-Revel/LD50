@@ -56,6 +56,7 @@ public class LevelGenerator : MonoBehaviour
         tilePosition.y = transform.position.y;
         LevelTile tile = Instantiate(tilePrefab, tilePosition, transform.rotation);
         int tileIndex = tileCount;
+        tile.sectionIndex = tileCount;
         tile.castleBuiltDelegate += (int checkpointIndex) => {
             castleBuiltDelegate?.Invoke(tileIndex, checkpointIndex);
             UnlockNextSection(tileIndex);
@@ -65,7 +66,6 @@ public class LevelGenerator : MonoBehaviour
             castleDestroyedDelegate?.Invoke(tileIndex, checkpointIndex);
             UnlockNextSection(tileIndex);
         };
-        tile.sectionIndex = tileCount;
         generatedTiles.Add(tile);
         tileCount++;
         tileGeneratedDelegate?.Invoke();
@@ -79,6 +79,7 @@ public class LevelGenerator : MonoBehaviour
         tilePosition.y = transform.position.y;
         LevelTile tile = Instantiate(tilePrefab, tilePosition, transform.rotation);
         int tileIndex = tileCount;
+        tile.sectionIndex = tileCount;
         tile.castleBuiltDelegate += (int checkpointIndex) => {
             castleBuiltDelegate?.Invoke(tileIndex, checkpointIndex);
             UnlockNextSection(tileIndex);
@@ -87,7 +88,6 @@ public class LevelGenerator : MonoBehaviour
             castleDestroyedDelegate?.Invoke(tileIndex, checkpointIndex);
             UnlockNextSection(tileIndex);
         };
-        tile.sectionIndex = tileCount;
         generatedTiles.Add(tile);
         tileCount++;
         tileGeneratedDelegate?.Invoke();

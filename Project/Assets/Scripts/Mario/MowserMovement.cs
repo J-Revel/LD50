@@ -54,7 +54,7 @@ public class MowserMovement : MonoBehaviour
                 if(improvementUI != null && improvementUI.currentConfig == castleConfig && (sectionIndex > furthestCastleSection || (sectionIndex == furthestCastleSection && i >= furthestCastleCheckpoint)))
                 {
                     furthestCastleCheckpoint = improvementUI.checkpointIndex;
-                    furthestCastleSection = improvementUI.sectionIndex;
+                    furthestCastleSection = sectionIndex;
                     float fadeDuration = 0.5f;
                     for(float t=0; t<fadeDuration; t+=Time.deltaTime)
                     {
